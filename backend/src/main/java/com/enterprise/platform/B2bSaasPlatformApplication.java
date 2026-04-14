@@ -25,10 +25,17 @@ public class B2bSaasPlatformApplication {
      * @param args Command line arguments passed to the application
      */
     public static void main(String[] args) {
+        System.out.println("╔════════════════════════════════════════════════════════════╗");
+        System.out.println("║  Enterprise B2B SaaS Platform - Startup                    ║");
+        System.out.println("╚════════════════════════════════════════════════════════════╝");
+        
         // Load .env file before Spring Boot starts
         Dotenv dotenv = Dotenv.configure()
                 .ignoreIfMissing()
                 .load();
+        
+        int envCount = dotenv.entries().size();
+        System.out.println("📁 Loaded .env file: " + envCount + " variables");
 
         // Set system properties from .env for Spring to pick up
         dotenv.entries().forEach(entry -> {
@@ -36,6 +43,19 @@ public class B2bSaasPlatformApplication {
                 System.setProperty(entry.getKey(), entry.getValue());
             }
         });
+
+        // Verify MongoDB URI source
+        String mongoUri = System.getProperty("SPRING_DATA_MONGODB_URI");
+        String mongoEnv = System.getenv("SPRING_DATA_MONGODB_URI");
+        
+        System.out.println("🔍 MongoDB URI Source Check:");
+        System.out.println("   - System Property (from .env): " + (mongoUri != null ? "SET" : "NOT SET"));
+        System.out.println("   - Environment Variable: " + (mongoEnv != null ? "SET" : "NOT SET"));
+        
+        if (mongoUri == null && mongoEnv == null) {
+            System.err.println("⚠️  WARNING: SPRING_DATA_MONGODB_URI is not configured!");
+            System.err.println("   The application will use fallback localhost:27017");
+        }
 
         SpringApplication.run(B2bSaasPlatformApplication.class, args);
     }

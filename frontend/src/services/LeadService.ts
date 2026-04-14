@@ -153,6 +153,10 @@ class LeadService {
               toast.error('The requested resource was not found.')
               break
             
+            case 503:
+              toast.error(data?.message || 'Server is starting up or database is connecting. Please try again in a moment.')
+              break
+            
             case 409:
               toast.error(data?.message || 'Resource conflict. The resource may already exist.')
               break

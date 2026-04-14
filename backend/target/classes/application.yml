@@ -17,12 +17,15 @@ spring:
   
   # MongoDB Configuration - Uses environment variable for security
   # Set SPRING_DATA_MONGODB_URI in your .env file or environment
-  # Example: mongodb+srv://username:password@cluster.mongodb.net/enterprise_b2b_platform?retryWrites=true&w=majority
+  # Example: mongodb+srv://username:password@cluster.mongodb.net/enterprise_b2b_platform?retryWrites=true&w=majority&serverSelectionTimeoutMS=5000&connectTimeoutMS=5000
   data:
     mongodb:
       uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/enterprise_b2b_platform}
       database: enterprise_b2b_platform
       auto-index-creation: true
+      # Connection timeouts - FAIL FAST (5 seconds max) instead of hanging 30 seconds
+      connection-timeout: 5000
+      socket-timeout: 5000
       # Connection pool settings for production
       connection-pool:
         min-size: 5

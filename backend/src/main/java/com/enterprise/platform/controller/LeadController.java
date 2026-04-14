@@ -1,6 +1,7 @@
 package com.enterprise.platform.controller;
 
 import com.enterprise.platform.domain.Lead;
+import com.enterprise.platform.dto.ErrorResponse;
 import com.enterprise.platform.dto.LeadCreateRequest;
 import com.enterprise.platform.dto.LeadResponse;
 import com.enterprise.platform.service.LeadService;
@@ -81,11 +82,22 @@ public class LeadController {
         )
     })
     @PostMapping
-    public ResponseEntity<LeadResponse> createLead(@Valid @NonNull @RequestBody LeadCreateRequest leadRequest) {
+    public ResponseEntity<?> createLead(@Valid @NonNull @RequestBody LeadCreateRequest leadRequest) {
         logger.info("✅ RECEIVED POST REQUEST /api/v1/leads - Email: {}", leadRequest.getEmail());
-        LeadResponse createdLead = leadService.createLead(leadRequest);
-        logger.info("✅ Lead created successfully - ID: {}, Email: {}", createdLead.getId(), createdLead.getEmail());
-        return new ResponseEntity<>(createdLead, HttpStatus.CREATED);
+        
+        try {
+            LeadResponse createdLead = leadService.createLead(leadRequest);
+            logger.info("✅ Lead created successfully - ID: {}, Email: {}", createdLead.getId(), createdLead.getEmail());
+            return new ResponseEntity<>(createdLead, HttpStatus.CREATED);
+        } catch (org.springframework.dao.DataAccessException e) {
+            logger.error("❌ Database error while creating lead: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(new ErrorResponse("Database connection pending. Please try again in a moment."));
+        } catch (Exception e) {
+            logger.error("❌ Unexpected error while creating lead: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse("Server error. Please try again later."));
+        }
     }
 
     /**
