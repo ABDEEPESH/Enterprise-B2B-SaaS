@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
@@ -169,6 +170,49 @@ public class SecurityConfig {
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
         return new JwtAuthenticationFilter();
+    }
+
+    /**
+     * CORS filter that runs before Spring Security filter chain.
+     * This ensures preflight OPTIONS requests are handled before security checks.
+     */
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        
+        // Allowed origins
+        configuration.setAllowedOrigins(Arrays.asList(
+            "https://your-vercel-domain.vercel.app",
+            "https://localhost:3000",
+            "https://localhost:5173",
+            "http://localhost:3000",
+            "http://localhost:5173"
+        ));
+        
+        // Allowed methods
+        configuration.setAllowedMethods(Arrays.asList(
+            "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"
+        ));
+        
+        // Allowed headers
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        
+        // Allow credentials
+        configuration.setAllowCredentials(true);
+        
+        // Exposed headers
+        configuration.setExposedHeaders(Arrays.asList(
+            "X-Total-Count",
+            "X-Page-Count"
+        ));
+        
+        // Max age
+        configuration.setMaxAge(3600L);
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        
+        return new CorsFilter(source);
     }
 
     /**
