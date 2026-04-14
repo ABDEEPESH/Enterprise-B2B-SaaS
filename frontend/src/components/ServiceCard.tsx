@@ -27,37 +27,37 @@ const ServiceCard = ({
     primary: {
       bg: 'from-primary-500 to-primary-600',
       hover: 'hover:from-primary-600 hover:to-primary-700',
-      text: 'text-primary-600',
-      border: 'border-primary-200',
-      glow: 'shadow-glow'
+      text: 'text-primary-600 dark:text-primary-400',
+      border: 'border-primary-200 dark:border-primary-800',
+      glow: 'shadow-glow dark:shadow-glow-lg'
     },
     accent: {
       bg: 'from-accent-500 to-accent-600',
       hover: 'hover:from-accent-600 hover:to-accent-700',
-      text: 'text-accent-600',
-      border: 'border-accent-200',
-      glow: 'shadow-glow'
+      text: 'text-accent-600 dark:text-accent-400',
+      border: 'border-accent-200 dark:border-accent-800',
+      glow: 'shadow-glow dark:shadow-glow-lg'
     },
     success: {
       bg: 'from-success-500 to-success-600',
       hover: 'hover:from-success-600 hover:to-success-700',
-      text: 'text-success-600',
-      border: 'border-success-200',
-      glow: 'shadow-glow'
+      text: 'text-success-600 dark:text-success-400',
+      border: 'border-success-200 dark:border-success-800',
+      glow: 'shadow-glow dark:shadow-glow-lg'
     },
     warning: {
       bg: 'from-warning-500 to-warning-600',
       hover: 'hover:from-warning-600 hover:to-warning-700',
-      text: 'text-warning-600',
-      border: 'border-warning-200',
-      glow: 'shadow-glow'
+      text: 'text-warning-600 dark:text-warning-400',
+      border: 'border-warning-200 dark:border-warning-800',
+      glow: 'shadow-glow dark:shadow-glow-lg'
     },
     error: {
       bg: 'from-error-500 to-error-600',
       hover: 'hover:from-error-600 hover:to-error-700',
-      text: 'text-error-600',
-      border: 'border-error-200',
-      glow: 'shadow-glow'
+      text: 'text-error-600 dark:text-error-400',
+      border: 'border-error-200 dark:border-error-800',
+      glow: 'shadow-glow dark:shadow-glow-lg'
     }
   }
 
@@ -117,7 +117,7 @@ const ServiceCard = ({
       className={cn(
         'relative group',
         glassmorphism && 'glass',
-        !glassmorphism && 'bg-white rounded-xl shadow-card border border-secondary-200',
+        !glassmorphism && 'bg-white dark:bg-slate-800 rounded-xl shadow-card border border-secondary-200 dark:border-slate-700',
         hover && 'card-hover cursor-pointer',
         className
       )}
@@ -140,7 +140,7 @@ const ServiceCard = ({
           className={cn(
             'w-16 h-16 rounded-2xl flex items-center justify-center mb-6',
             glassmorphism 
-              ? 'bg-white/20 backdrop-blur-sm border border-white/30'
+              ? 'bg-white/20 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20'
               : `bg-gradient-to-br ${currentColor.bg} shadow-lg`
           )}
           variants={iconVariants}
@@ -155,7 +155,7 @@ const ServiceCard = ({
         {/* Title */}
         <h3 className={cn(
           'text-xl lg:text-2xl font-bold mb-4',
-          glassmorphism ? 'text-white' : 'text-secondary-900'
+          glassmorphism ? 'text-white' : 'text-secondary-900 dark:text-white'
         )}>
           {title}
         </h3>
@@ -163,7 +163,7 @@ const ServiceCard = ({
         {/* Description */}
         <p className={cn(
           'mb-6 leading-relaxed',
-          glassmorphism ? 'text-white/80' : 'text-secondary-600'
+          glassmorphism ? 'text-white/80' : 'text-secondary-600 dark:text-slate-300'
         )}>
           {description}
         </p>
@@ -181,7 +181,7 @@ const ServiceCard = ({
                 key={index}
                 className={cn(
                   'flex items-center space-x-3',
-                  glassmorphism ? 'text-white/90' : 'text-secondary-700'
+                  glassmorphism ? 'text-white/90' : 'text-secondary-700 dark:text-slate-300'
                 )}
                 variants={{
                   initial: { opacity: 0, x: -20 },
@@ -202,7 +202,7 @@ const ServiceCard = ({
         {/* Hover Overlay */}
         {hover && (
           <motion.div
-            className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+            className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 dark:from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
             initial={{ opacity: 0 }}
             whileHover={{ opacity: 1 }}
           />

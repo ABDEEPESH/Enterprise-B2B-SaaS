@@ -4,12 +4,23 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-secondary-200;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
   
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-secondary-900;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  #root {
+    height: 100%;
+    width: 100%;
   }
   
   html {

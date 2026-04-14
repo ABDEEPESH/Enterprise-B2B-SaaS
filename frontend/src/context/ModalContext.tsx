@@ -1,0 +1,34 @@
+import React, { createContext, useContext, useState, ReactNode } from 'react'
+
+interface ModalContextType {
+  isLeadModalOpen: boolean
+  openLeadModal: () => void
+  closeLeadModal: () => void
+}
+
+const ModalContext = createContext<ModalContextType | undefined>(undefined)
+
+export const useModal = () => {
+  const context = useContext(ModalContext)
+  if (context === undefined) {
+    throw new Error('useModal must be used within a ModalProvider')
+  }
+  return context
+}
+
+interface ModalProviderProps {
+  children: ReactNode
+}
+
+export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
+  const [isLeadModalOpen, setIsLeadModalOpen] = useState(false)
+
+  const openLeadModal = () => setIsLeadModalOpen(true)
+  const closeLeadModal = () => setIsLeadModalOpen(false)
+
+  return (
+    <ModalContext.Provider value={{ isLeadModalOpen, openLeadModal, closeLeadModal }}>
+      {children}
+    </ModalContext.Provider>
+  )
+}

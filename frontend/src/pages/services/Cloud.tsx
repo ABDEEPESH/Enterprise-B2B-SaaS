@@ -1,28 +1,25 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { 
-  Cloud, 
-  Database, 
-  Shield, 
-  Zap, 
-  ArrowRight, 
-  CheckCircle, 
+  Cloud as CloudIcon, 
   Server, 
-  Globe, 
-  Cpu,
+  ArrowRight,
+  Shield,
+  Zap,
   BarChart3,
-  Settings,
-  Lock
+  Settings
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const Cloud = () => {
+  const { openLeadModal } = useModal()
   const services = [
     {
       title: 'Cloud Migration',
       description: 'Seamless migration of your infrastructure and applications to the cloud with minimal downtime.',
-      icon: Globe,
+      icon: CloudIcon,
       features: ['Assessment & Planning', 'Data Migration', 'Application Migration', 'Post-Migration Support'],
       color: 'primary' as const
     },
@@ -95,7 +92,7 @@ const Cloud = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-cyan-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -105,7 +102,7 @@ const Cloud = () => {
           >
             <motion.div variants={itemVariants} className="mb-6">
               <span className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
-                <Cloud className="w-4 h-4 mr-2" />
+                <CloudIcon className="w-4 h-4 mr-2" />
                 Cloud Solutions
               </span>
             </motion.div>
@@ -121,7 +118,7 @@ const Cloud = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-900 dark:text-slate-300"
             >
               Harness the power of cloud computing to drive agility, scalability, and 
               innovation. Our cloud experts help you migrate, optimize, and secure your 
@@ -146,7 +143,7 @@ const Cloud = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -156,7 +153,7 @@ const Cloud = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Cloud Services</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Comprehensive cloud solutions covering migration, architecture, and security.
             </p>
           </motion.div>
@@ -179,7 +176,7 @@ const Cloud = () => {
       </section>
 
       {/* Platforms Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +186,7 @@ const Cloud = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Cloud Platforms</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Expertise across all major cloud platforms to deliver the best solution for your needs.
             </p>
           </motion.div>
@@ -205,10 +202,10 @@ const Cloud = () => {
                 className="card p-6 text-center"
               >
                 <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Cloud className="w-8 h-8 text-blue-600" />
+                  <CloudIcon className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="heading-4 mb-2">{platform.name}</h3>
-                <p className="text-sm text-secondary-600">{platform.description}</p>
+                <p className="text-sm text-secondary-900 dark:text-slate-300">{platform.description}</p>
               </motion.div>
             ))}
           </div>
@@ -216,7 +213,7 @@ const Cloud = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -242,7 +239,7 @@ const Cloud = () => {
                   </div>
                   <div>
                     <h3 className="heading-4 mb-2">{benefit.title}</h3>
-                    <p className="body text-secondary-600">{benefit.description}</p>
+                    <p className="body text-secondary-900 dark:text-slate-300">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -252,7 +249,7 @@ const Cloud = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-cyan-600 text-white dark:from-blue-700 dark:to-cyan-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -266,12 +263,10 @@ const Cloud = () => {
               Let's design a cloud strategy that transforms your business operations 
               and drives innovation. Schedule a cloud consultation today.
             </p>
-            <Link to="/contact">
-              <AnimatedButton variant="secondary" size="lg" className="bg-white text-blue-600 hover:bg-secondary-50">
+            <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-blue-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                 Schedule Cloud Consultation
                 <ArrowRight className="w-5 h-5 ml-2" />
               </AnimatedButton>
-            </Link>
           </motion.div>
         </div>
       </section>

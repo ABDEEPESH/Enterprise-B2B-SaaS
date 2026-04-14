@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { useModal } from '../context/ModalContext'
+import { useTheme } from '../context/ThemeContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu,
@@ -20,17 +22,17 @@ import {
   Brain,
   BookOpen,
   Users,
-  Phone,
-  Mail,
-  MapPin,
+  Moon,
+  Sun,
 } from 'lucide-react'
 
 const Navbar = () => {
+  const { openLeadModal } = useModal()
+  const { theme, toggleTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
-  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,16 +88,13 @@ const Navbar = () => {
   }
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-secondary-200'
-          : 'bg-white/80 backdrop-blur-sm border-b border-secondary-100'
-      }`}
-    >
-      <div className="container">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div className={`transition-all duration-300 ${
+        isScrolled ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      }`}>
+        <div className="container">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo */}
           <Link
             to="/"
             className="flex items-center space-x-2 group"
@@ -167,32 +166,65 @@ const Navbar = () => {
               </div>
             ))}
 
-            <div className="flex items-center space-x-4 pl-4 border-l border-secondary-200">
+            <div className="flex items-center space-x-4 pl-4 border-l border-secondary-200 dark:border-slate-700">
               <Link
                 to="/about"
-                className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors"
+                className="text-sm font-medium text-secondary-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors"
               >
                 About
               </Link>
               <Link
                 to="/pricing"
-                className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors"
+                className="text-sm font-medium text-secondary-600 hover:text-primary-600 dark:text-slate-300 dark:hover:text-primary-400 transition-colors"
               >
                 Pricing
               </Link>
-              <Link
-                to="/contact"
+              
+              {/* Dark Mode Toggle */}
+              <motion.button
+                onClick={toggleTheme}
+                className="relative p-2 rounded-full bg-secondary-100 dark:bg-slate-800 text-secondary-600 dark:text-slate-300 hover:bg-secondary-200 dark:hover:bg-slate-700 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <AnimatePresence mode="wait">
+                  {theme === 'dark' ? (
+                    <motion.div
+                      key="sun"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Sun className="w-5 h-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="moon"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Moon className="w-5 h-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+              
+              <button
+                onClick={openLeadModal}
                 className="btn-primary text-sm"
               >
                 Get Started
-              </Link>
+              </button>
             </div>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-secondary-600 hover:text-secondary-900 hover:bg-secondary-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-secondary-600 dark:text-slate-300 hover:text-secondary-900 dark:hover:text-white hover:bg-secondary-100 dark:hover:bg-slate-800 transition-colors"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -207,7 +239,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden bg-white border-t border-secondary-200"
+            className="lg:hidden bg-white dark:bg-slate-900 border-t border-secondary-200 dark:border-slate-700"
           >
             <div className="container py-4 space-y-4">
               {navLinks.map((link) => (
@@ -216,7 +248,7 @@ const Navbar = () => {
                     onClick={() =>
                       setActiveDropdown(activeDropdown === link.name ? null : link.name)
                     }
-                    className="flex items-center justify-between w-full px-4 py-2 text-left text-sm font-medium text-secondary-600 hover:text-primary-600 hover:bg-secondary-50 rounded-lg transition-colors"
+                    className="flex items-center justify-between w-full px-4 py-2 text-left text-sm font-medium text-secondary-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-secondary-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
                   >
                     <div className="flex items-center space-x-2">
                       <link.icon className="w-4 h-4" />
@@ -244,8 +276,8 @@ const Navbar = () => {
                             to={item.href}
                             className={`flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition-colors ${
                               isActiveLink(item.href)
-                                ? 'bg-primary-50 text-primary-600'
-                                : 'text-secondary-600 hover:bg-secondary-50'
+                                ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
+                                : 'text-secondary-600 dark:text-slate-300 hover:bg-secondary-50 dark:hover:bg-slate-800'
                             }`}
                           >
                             <item.icon className="w-4 h-4" />
@@ -258,30 +290,31 @@ const Navbar = () => {
                 </div>
               ))}
 
-              <div className="pt-4 border-t border-secondary-200 space-y-2">
+              <div className="pt-4 border-t border-secondary-200 dark:border-slate-700 space-y-2">
                 <Link
                   to="/about"
-                  className="block px-4 py-2 text-sm font-medium text-secondary-600 hover:text-primary-600 hover:bg-secondary-50 rounded-lg transition-colors"
+                  className="block px-4 py-2 text-sm font-medium text-secondary-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-secondary-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
                 >
                   About
                 </Link>
                 <Link
                   to="/pricing"
-                  className="block px-4 py-2 text-sm font-medium text-secondary-600 hover:text-primary-600 hover:bg-secondary-50 rounded-lg transition-colors"
+                  className="block px-4 py-2 text-sm font-medium text-secondary-600 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-secondary-50 dark:hover:bg-slate-800 rounded-lg transition-colors"
                 >
                   Pricing
                 </Link>
-                <Link
-                  to="/contact"
+                <button
+                  onClick={openLeadModal}
                   className="block mx-4 btn-primary text-center text-sm"
                 >
                   Get Started
-                </Link>
+                </button>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
     </nav>
   )
 }

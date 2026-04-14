@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios'
 import toast from 'react-hot-toast'
 
 // Types for API requests and responses
@@ -66,7 +66,7 @@ class LeadService {
 
   constructor() {
     this.api = axios.create({
-      baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1',
+      baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8081/api/v1',
       timeout: 30000,
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ class LeadService {
   private setupInterceptors() {
     // Request interceptor
     this.api.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
+      (config) => {
         // Add auth token if available
         const token = localStorage.getItem('auth_token')
         if (token && config.headers) {
@@ -95,7 +95,7 @@ class LeadService {
 
         // Log request in development
         if (import.meta.env.DEV) {
-          console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`, {
+          console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`, {
             params: config.params,
             data: config.data,
           })
@@ -114,7 +114,7 @@ class LeadService {
       (response: AxiosResponse) => {
         // Log response in development
         if (import.meta.env.DEV) {
-          console.log(`✅ API Response: ${response.config.method?.toUpperCase()} ${response.config.url}`, {
+          console.log(`API Response: ${response.config.method?.toUpperCase()} ${response.config.url}`, {
             status: response.status,
             data: response.data,
           })
@@ -178,7 +178,7 @@ class LeadService {
 
         // Log error in development
         if (import.meta.env.DEV) {
-          console.error('❌ API Error:', {
+          console.error('API Error:', {
             message: error.message,
             response: error.response?.data,
             config: error.config,

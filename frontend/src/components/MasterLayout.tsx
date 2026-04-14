@@ -5,7 +5,7 @@ import Footer from './Footer'
 
 const MasterLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900">
       <Navbar />
       
       <AnimatePresence mode="wait">

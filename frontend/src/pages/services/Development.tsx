@@ -1,23 +1,18 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { 
   Code, 
-  Zap, 
   Cloud, 
-  Shield, 
   ArrowRight, 
-  CheckCircle, 
-  Database, 
   Globe, 
-  Smartphone,
-  Rocket,
-  Cpu,
-  GitBranch
+  Smartphone
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const Development = () => {
+  const { openLeadModal } = useModal()
   const services = [
     {
       title: 'Web Applications',
@@ -95,7 +90,7 @@ const Development = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-secondary-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -121,7 +116,7 @@ const Development = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-900 dark:text-slate-300"
             >
               Transform your ideas into robust, scalable applications with our expert 
               development team. We leverage modern technologies and agile methodologies 
@@ -146,7 +141,7 @@ const Development = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -156,7 +151,7 @@ const Development = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Development Services</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Full-stack development services covering web, mobile, and cloud platforms.
             </p>
           </motion.div>
@@ -179,7 +174,7 @@ const Development = () => {
       </section>
 
       {/* Technologies Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +184,7 @@ const Development = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Technology Stack</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               We work with the latest technologies and frameworks to build modern, 
               scalable solutions that meet your business needs.
             </p>
@@ -223,7 +218,7 @@ const Development = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -233,7 +228,7 @@ const Development = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Development Process</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Our agile development process ensures rapid delivery without compromising quality.
             </p>
           </motion.div>
@@ -252,7 +247,7 @@ const Development = () => {
                   <span className="text-2xl font-bold text-primary-600">{item.step}</span>
                 </div>
                 <h3 className="heading-4 mb-4">{item.title}</h3>
-                <p className="body text-secondary-600">{item.description}</p>
+                <p className="body text-secondary-900 dark:text-slate-300">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -260,7 +255,7 @@ const Development = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-600 to-secondary-600 text-white dark:from-primary-700 dark:to-secondary-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -274,12 +269,10 @@ const Development = () => {
               Let's discuss how our development expertise can bring your vision to life. 
               Schedule a technical consultation with our development team.
             </p>
-            <Link to="/contact">
-              <AnimatedButton variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-secondary-50">
+            <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                 Schedule Technical Consultation
                 <ArrowRight className="w-5 h-5 ml-2" />
               </AnimatedButton>
-            </Link>
           </motion.div>
         </div>
       </section>

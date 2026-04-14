@@ -15,11 +15,11 @@ const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
     const baseClasses = 'relative inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
     
     const variants = {
-      primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-lg focus:ring-primary-500',
-      secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 shadow-sm hover:shadow-md focus:ring-secondary-500',
-      outline: 'border border-primary-600 text-primary-600 hover:bg-primary-50 hover:border-primary-700 focus:ring-primary-500',
-      ghost: 'text-secondary-600 hover:text-secondary-900 hover:bg-secondary-100 focus:ring-secondary-500',
-      gradient: 'bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-md hover:shadow-lg focus:ring-primary-500'
+      primary: 'bg-primary-600 hover:bg-primary-700 text-white shadow-md hover:shadow-lg focus:ring-primary-500 dark:bg-primary-500 dark:hover:bg-primary-600',
+      secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 shadow-sm hover:shadow-md focus:ring-secondary-500 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white dark:shadow-md dark:shadow-slate-900/50',
+      outline: 'border border-primary-600 text-primary-600 hover:bg-primary-50 hover:border-primary-700 focus:ring-primary-500 dark:border-primary-500 dark:text-primary-400 dark:hover:bg-primary-900/20 dark:hover:border-primary-400',
+      ghost: 'text-secondary-600 hover:text-secondary-900 hover:bg-secondary-100 focus:ring-secondary-500 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800',
+      gradient: 'bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-md hover:shadow-lg focus:ring-primary-500 dark:from-primary-500 dark:to-accent-500'
     }
     
     const sizes = {
@@ -71,7 +71,7 @@ const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
         whileHover={!disabled && !loading ? "hover" : "disabled"}
         whileTap={!disabled && !loading ? "tap" : "disabled"}
         disabled={disabled || loading}
-        {...props}
+        {...(props as any)}
       >
         {/* Glow Effect */}
         {glowEffect && variant !== 'ghost' && (

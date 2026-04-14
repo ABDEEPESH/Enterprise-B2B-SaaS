@@ -31,8 +31,11 @@
       "@hooks/*": ["src/hooks/*"],
       "@assets/*": ["src/assets/*"],
       "@styles/*": ["src/styles/*"]
-    }
+    },
+
+    /* Vite types */
+    "types": ["vite/client"]
   },
-  "include": ["src"],
+  "include": ["src", "vite-env.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

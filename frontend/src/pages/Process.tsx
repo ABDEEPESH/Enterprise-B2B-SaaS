@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../context/ModalContext'
 import { 
   Search, 
   Lightbulb, 
@@ -11,12 +12,12 @@ import {
   Users,
   Target,
   Zap,
-  Shield,
-  TrendingUp
+  Shield
 } from 'lucide-react'
 import AnimatedButton from '../components/AnimatedButton'
 
 const Process = () => {
+  const { openLeadModal } = useModal()
   const processSteps = [
     {
       number: '01',
@@ -114,7 +115,7 @@ const Process = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -140,7 +141,7 @@ const Process = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-600 dark:text-slate-300"
             >
               We've refined our methodology over hundreds of enterprise projects to deliver 
               exceptional results consistently. Our transparent, collaborative approach ensures 
@@ -150,15 +151,15 @@ const Process = () => {
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-8">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary-600 mb-2">6</div>
-                <div className="text-secondary-600">Structured Phases</div>
+                <div className="text-secondary-600 dark:text-slate-300">Structured Phases</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary-600 mb-2">12-24</div>
-                <div className="text-secondary-600">Weeks Average Timeline</div>
+                <div className="text-secondary-600 dark:text-slate-300">Weeks Average Timeline</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary-600 mb-2">95%</div>
-                <div className="text-secondary-600">On-Time Delivery</div>
+                <div className="text-secondary-600 dark:text-slate-300">On-Time Delivery</div>
               </div>
             </motion.div>
           </motion.div>
@@ -166,7 +167,7 @@ const Process = () => {
       </section>
 
       {/* Process Steps */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -176,7 +177,7 @@ const Process = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">How We Work</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Our systematic approach ensures nothing is overlooked and every project 
               delivers maximum value to your organization.
             </p>
@@ -207,7 +208,7 @@ const Process = () => {
                       </div>
                     </div>
                     
-                    <p className="body text-secondary-600 mb-4">{step.description}</p>
+                    <p className="body text-secondary-600 dark:text-slate-300 mb-4">{step.description}</p>
                     
                     <div className="flex items-center text-sm text-secondary-500 mb-4">
                       <Clock className="w-4 h-4 mr-2" />
@@ -215,10 +216,10 @@ const Process = () => {
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-secondary-900 mb-2">Key Deliverables:</h4>
+                      <h4 className="font-semibold text-secondary-900 dark:text-white mb-2">Key Deliverables:</h4>
                       <ul className="space-y-1">
                         {step.deliverables.map((deliverable, i) => (
-                          <li key={i} className="flex items-center text-sm text-secondary-600">
+                          <li key={i} className="flex items-center text-sm text-secondary-600 dark:text-slate-300">
                             <CheckCircle className="w-3 h-3 text-success-500 mr-2 flex-shrink-0" />
                             {deliverable}
                           </li>
@@ -240,7 +241,7 @@ const Process = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -250,7 +251,7 @@ const Process = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Why Choose Our Process?</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Our methodology is designed to minimize risk, maximize value, and ensure 
               successful outcomes for every project.
             </p>
@@ -275,7 +276,7 @@ const Process = () => {
                   <benefit.icon className="w-8 h-8 text-primary-600" />
                 </div>
                 <h3 className="heading-4 mb-4">{benefit.title}</h3>
-                <p className="body text-secondary-600">{benefit.description}</p>
+                <p className="body text-secondary-600 dark:text-slate-300">{benefit.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -283,7 +284,7 @@ const Process = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white dark:from-primary-700 dark:to-accent-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -298,14 +299,12 @@ const Process = () => {
               Schedule a free consultation with our experts today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <AnimatedButton variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-secondary-50">
+              <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                   Schedule Consultation
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </AnimatedButton>
-              </Link>
               <Link to="/pricing">
-                <AnimatedButton variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600">
+                <AnimatedButton variant="outline" size="lg" className="border-white text-white hover:bg-white dark:bg-slate-800 hover:text-primary-600">
                   View Pricing
                 </AnimatedButton>
               </Link>

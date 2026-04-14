@@ -1,23 +1,21 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { 
   TrendingUp, 
   Shield, 
   CreditCard, 
-  PiggyBank, 
   ArrowRight, 
-  CheckCircle, 
-  BarChart3, 
-  Globe, 
-  Lock,
-  Banknote,
-  Wallet,
-  Building
+  Building,
+  BarChart3,
+  Globe,
+  Lock
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const FinTech = () => {
+  const { openLeadModal } = useModal()
   const solutions = [
     {
       title: 'Digital Banking',
@@ -109,7 +107,7 @@ const FinTech = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-green-50 to-emerald-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -135,7 +133,7 @@ const FinTech = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-600 dark:text-slate-300"
             >
               Empower financial institutions with cutting-edge technology solutions that 
               drive innovation, ensure compliance, and deliver exceptional customer experiences 
@@ -143,12 +141,10 @@ const FinTech = () => {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <AnimatedButton size="lg">
+                <AnimatedButton size="lg" onClick={openLeadModal}>
                   Schedule FinTech Consultation
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </AnimatedButton>
-              </Link>
               <Link to="/services">
                 <AnimatedButton variant="outline" size="lg">
                   Our Services
@@ -160,7 +156,7 @@ const FinTech = () => {
       </section>
 
       {/* Solutions Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -170,7 +166,7 @@ const FinTech = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">FinTech Solutions</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Comprehensive technology solutions tailored for the financial services industry.
             </p>
           </motion.div>
@@ -193,7 +189,7 @@ const FinTech = () => {
       </section>
 
       {/* Challenges Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -203,7 +199,7 @@ const FinTech = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Industry Challenges We Solve</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Addressing the unique challenges faced by financial institutions in the digital age.
             </p>
           </motion.div>
@@ -219,10 +215,10 @@ const FinTech = () => {
                 className="text-center p-6"
               >
                 <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-6">
-                  <challenge.icon className="w-8 h-8 text-green-600" />
+                  {challenge.icon && <challenge.icon className="w-8 h-8 text-green-600" />}
                 </div>
                 <h3 className="heading-4 mb-4">{challenge.title}</h3>
-                <p className="body text-secondary-600">{challenge.description}</p>
+                <p className="body text-secondary-600 dark:text-slate-300">{challenge.description}</p>
               </motion.div>
             ))}
           </div>
@@ -230,7 +226,7 @@ const FinTech = () => {
       </section>
 
       {/* Case Studies */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -240,7 +236,7 @@ const FinTech = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">FinTech Success Stories</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Real results from financial institutions that have transformed their operations.
             </p>
           </motion.div>
@@ -258,18 +254,18 @@ const FinTech = () => {
                 <h3 className="heading-4 mb-3 text-green-600">{study.company}</h3>
                 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-secondary-900 mb-2">Challenge</h4>
-                  <p className="text-sm text-secondary-600">{study.challenge}</p>
+                  <h4 className="font-semibold text-secondary-900 dark:text-white mb-2">Challenge</h4>
+                  <p className="text-sm text-secondary-600 dark:text-slate-300">{study.challenge}</p>
                 </div>
                 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-secondary-900 mb-2">Solution</h4>
-                  <p className="text-sm text-secondary-600">{study.solution}</p>
+                  <h4 className="font-semibold text-secondary-900 dark:text-white mb-2">Solution</h4>
+                  <p className="text-sm text-secondary-600 dark:text-slate-300">{study.solution}</p>
                 </div>
                 
-                <div className="pt-4 border-t border-secondary-200">
+                <div className="pt-4 border-t border-secondary-200 dark:border-slate-700">
                   <h4 className="font-semibold text-success-600 mb-1">Results</h4>
-                  <p className="text-sm text-secondary-600">{study.results}</p>
+                  <p className="text-sm text-secondary-600 dark:text-slate-300">{study.results}</p>
                 </div>
               </motion.div>
             ))}
@@ -278,7 +274,7 @@ const FinTech = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-green-600 to-emerald-600 text-white dark:from-green-700 dark:to-emerald-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -292,12 +288,10 @@ const FinTech = () => {
               Let's discuss how our FinTech expertise can help you navigate the digital 
               transformation journey and stay ahead of the competition.
             </p>
-            <Link to="/contact">
-              <AnimatedButton variant="secondary" size="lg" className="bg-white text-green-600 hover:bg-secondary-50">
+            <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-green-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                 Schedule FinTech Consultation
                 <ArrowRight className="w-5 h-5 ml-2" />
               </AnimatedButton>
-            </Link>
           </motion.div>
         </div>
       </section>

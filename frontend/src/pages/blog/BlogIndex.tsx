@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Calendar, Clock, User, ArrowRight, Search } from 'lucide-react'
+import { useModal } from '../../context/ModalContext'
 import AnimatedButton from '../../components/AnimatedButton'
 
 const blogPosts = [
@@ -75,10 +76,11 @@ const blogPosts = [
 const categories = ['All', 'AI & Machine Learning', 'Cloud Computing', 'Security', 'Data Analytics', 'Software Architecture', 'Digital Strategy']
 
 const BlogIndex = () => {
+  const { openLeadModal } = useModal()
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-20">
+      <section className="relative bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-20">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -86,10 +88,10 @@ const BlogIndex = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl font-bold text-secondary-900 mb-6">
+            <h1 className="text-5xl font-bold text-secondary-900 dark:text-white mb-6">
               Enterprise Insights & Innovation
             </h1>
-            <p className="text-xl text-secondary-600 mb-8 leading-relaxed">
+            <p className="text-xl text-secondary-600 dark:text-slate-300 mb-8 leading-relaxed">
               Explore cutting-edge perspectives on enterprise technology, digital transformation, 
               and industry trends from our expert team of consultants and engineers.
             </p>
@@ -112,7 +114,7 @@ const BlogIndex = () => {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                     category === 'All'
                       ? 'bg-primary-600 text-white'
-                      : 'bg-white text-secondary-600 hover:bg-primary-50 border border-secondary-200'
+                      : 'bg-white dark:bg-slate-800 text-secondary-600 dark:text-slate-300 hover:bg-primary-50 border border-secondary-200'
                   }`}
                 >
                   {category}
@@ -130,12 +132,12 @@ const BlogIndex = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl p-8 md:p-12 text-white"
+            className="bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-700 dark:to-secondary-700 rounded-2xl p-8 md:p-12 text-white"
           >
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-white dark:bg-slate-800/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium">
                     Featured Article
                   </span>
                   <span className="text-white/80 text-sm">AI & Machine Learning</span>
@@ -161,14 +163,14 @@ const BlogIndex = () => {
                     8 min read
                   </div>
                 </div>
-                <AnimatedButton variant="secondary" className="bg-white text-primary-600 hover:bg-white/90">
+                <AnimatedButton variant="secondary" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-white dark:bg-slate-800/90">
                   Read Full Article
                 </AnimatedButton>
               </div>
               <div className="relative">
-                <div className="aspect-video bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                <div className="aspect-video bg-white dark:bg-slate-800/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-white dark:bg-slate-800/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <ArrowRight className="w-8 h-8" />
                     </div>
                     <p className="text-white/80">Featured Image</p>
@@ -181,7 +183,7 @@ const BlogIndex = () => {
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="py-16 bg-secondary-50">
+      <section className="py-16 bg-secondary-50 dark:bg-slate-800">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -189,8 +191,8 @@ const BlogIndex = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">Latest Insights</h2>
-            <p className="text-secondary-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-4">Latest Insights</h2>
+            <p className="text-secondary-600 dark:text-slate-300 max-w-2xl mx-auto">
               Stay updated with the latest trends, best practices, and innovations in enterprise technology.
             </p>
           </motion.div>
@@ -202,7 +204,7 @@ const BlogIndex = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group"
+                className="bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group"
               >
                 <div className="aspect-video bg-gradient-to-br from-primary-100 to-secondary-100 relative overflow-hidden">
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
@@ -220,12 +222,12 @@ const BlogIndex = () => {
                   </div>
                   
                   <Link to={`/blog/${post.slug}`}>
-                    <h3 className="text-xl font-bold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors duration-200">
+                    <h3 className="text-xl font-bold text-secondary-900 dark:text-white mb-3 group-hover:text-primary-600 transition-colors duration-200">
                       {post.title}
                     </h3>
                   </Link>
                   
-                  <p className="text-secondary-600 mb-4 line-clamp-3">
+                  <p className="text-secondary-600 dark:text-slate-300 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
                   
@@ -258,7 +260,7 @@ const BlogIndex = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-600 to-secondary-600">
+      <section className="py-16 bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-700 dark:to-secondary-700">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -276,9 +278,9 @@ const BlogIndex = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-secondary-900 focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="flex-1 px-4 py-3 rounded-lg text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-white/50"
               />
-              <AnimatedButton variant="secondary" className="bg-white text-primary-600 hover:bg-white/90">
+              <AnimatedButton variant="secondary" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-white dark:bg-slate-800/90" onClick={openLeadModal}>
                 Subscribe
               </AnimatedButton>
             </div>

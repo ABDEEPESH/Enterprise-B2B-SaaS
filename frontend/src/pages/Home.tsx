@@ -1,26 +1,25 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../context/ModalContext'
 import { 
   ArrowRight, 
   CheckCircle, 
   TrendingUp, 
   Shield, 
-  Zap, 
   Users, 
-  Globe,
-  BarChart3,
   Code,
   Palette,
-  Cloud,
   Lightbulb,
   Star,
   Play,
-  Building
+  Building,
+  Zap
 } from 'lucide-react'
 import AnimatedButton from '../components/AnimatedButton'
 import ServiceCard from '../components/ServiceCard'
 
 const Home = () => {
+  const { openLeadModal } = useModal()
   const containerVariants = {
     initial: { opacity: 0 },
     animate: {
@@ -99,7 +98,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-secondary-50 via-white to-primary-50">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-secondary-50 via-white to-primary-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-dots opacity-30" />
         
@@ -140,7 +139,7 @@ const Home = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 max-w-3xl mx-auto text-secondary-600"
+              className="body-lg mb-8 max-w-3xl mx-auto text-secondary-600 dark:text-slate-300"
             >
               Unlock the full potential of your organization with our comprehensive suite of 
               enterprise solutions. From strategy consulting to cutting-edge development, 
@@ -151,7 +150,7 @@ const Home = () => {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
             >
-              <AnimatedButton size="lg" className="group">
+              <AnimatedButton size="lg" className="group" onClick={openLeadModal}>
                 Get Started Today
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </AnimatedButton>
@@ -164,7 +163,7 @@ const Home = () => {
 
             <motion.div 
               variants={itemVariants}
-              className="flex flex-wrap justify-center gap-8 text-sm text-secondary-500"
+              className="flex flex-wrap justify-center gap-8 text-sm text-secondary-500 dark:text-slate-400"
             >
               <div className="flex items-center">
                 <CheckCircle className="w-4 h-4 text-success-500 mr-2" />
@@ -184,7 +183,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -205,8 +204,8 @@ const Home = () => {
                 <div className="w-16 h-16 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <stat.icon className="w-8 h-8 text-primary-600" />
                 </div>
-                <div className="text-3xl font-bold text-secondary-900 mb-2">{stat.value}</div>
-                <div className="text-secondary-600">{stat.label}</div>
+                <div className="text-3xl font-bold text-secondary-900 dark:text-white mb-2">{stat.value}</div>
+                <div className="text-secondary-600 dark:text-slate-300">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -214,7 +213,7 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -223,7 +222,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-2 mb-6">Comprehensive Enterprise Solutions</h2>
+            <h2 className="heading-2 mb-6 text-secondary-900 dark:text-white">Comprehensive Enterprise Solutions</h2>
             <p className="body-lg max-w-3xl mx-auto">
               From strategic planning to technical implementation, we provide end-to-end solutions 
               that address your most complex business challenges.
@@ -263,7 +262,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -272,7 +271,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="heading-2 mb-6">Trusted by Industry Leaders</h2>
+            <h2 className="heading-2 mb-6 text-secondary-900 dark:text-white">Trusted by Industry Leaders</h2>
             <p className="body-lg max-w-3xl mx-auto">
               Discover how we've helped organizations like yours achieve remarkable results 
               through strategic partnership and innovative solutions.
@@ -299,7 +298,7 @@ const Home = () => {
                     <Star key={i} className="w-5 h-5 text-warning-400 fill-current" />
                   ))}
                 </div>
-                <p className="text-secondary-600 mb-6 italic">"{testimonial.content}"</p>
+                <p className="text-secondary-600 dark:text-slate-300 mb-6 italic">"{testimonial.content}"</p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
                     <span className="text-primary-600 font-semibold">
@@ -307,9 +306,9 @@ const Home = () => {
                     </span>
                   </div>
                   <div>
-                    <div className="font-semibold text-secondary-900">{testimonial.name}</div>
-                    <div className="text-sm text-secondary-600">{testimonial.role}</div>
-                    <div className="text-xs text-secondary-500">{testimonial.company}</div>
+                    <div className="font-semibold text-secondary-900 dark:text-white">{testimonial.name}</div>
+                    <div className="text-sm text-secondary-600 dark:text-slate-300">{testimonial.role}</div>
+                    <div className="text-xs text-secondary-500 dark:text-slate-400">{testimonial.company}</div>
                   </div>
                 </div>
               </motion.div>
@@ -319,7 +318,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white dark:from-primary-700 dark:to-accent-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -334,12 +333,10 @@ const Home = () => {
               Let's discuss how we can help you achieve your goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <AnimatedButton variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-secondary-50">
+              <AnimatedButton variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-secondary-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700" onClick={openLeadModal}>
                   Schedule a Consultation
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </AnimatedButton>
-              </Link>
               <Link to="/pricing">
                 <AnimatedButton variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600">
                   View Pricing Plans

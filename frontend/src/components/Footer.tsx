@@ -8,7 +8,6 @@ import {
   MapPin,
   Facebook,
   Twitter,
-  LinkedIn,
   Instagram,
   Github,
   ChevronRight,
@@ -48,13 +47,13 @@ const Footer = () => {
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
     { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: LinkedIn, href: '#', label: 'LinkedIn' },
+    { icon: Building, href: '#', label: 'LinkedIn' },
     { icon: Instagram, href: '#', label: 'Instagram' },
     { icon: Github, href: '#', label: 'Github' },
   ]
 
   return (
-    <footer className="bg-secondary-900 text-white">
+    <footer className="bg-secondary-900 dark:bg-slate-950 text-white dark:text-slate-100">
       {/* Main Footer Content */}
       <div className="container py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
@@ -101,7 +100,7 @@ const Footer = () => {
                   aria-label={social.label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 bg-secondary-800 hover:bg-primary-600 rounded-lg flex items-center justify-center transition-colors duration-200"
+                  className="w-10 h-10 bg-secondary-800 dark:bg-slate-800 hover:bg-primary-600 dark:hover:bg-primary-500 rounded-lg flex items-center justify-center transition-colors duration-200"
                 >
                   <social.icon className="w-5 h-5" />
                 </motion.a>
@@ -172,10 +171,10 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-secondary-800">
+      <div className="border-t border-secondary-800 dark:border-slate-800">
         <div className="container py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-secondary-400 text-sm">
+            <div className="text-secondary-400 dark:text-slate-400 text-sm">
               © {new Date().getFullYear()} Enterprise Platform. All rights reserved.
             </div>
             
@@ -184,7 +183,7 @@ const Footer = () => {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-secondary-400 hover:text-primary-400 text-sm transition-colors duration-200"
+                  className="text-secondary-400 dark:text-slate-400 hover:text-primary-400 dark:hover:text-primary-300 text-sm transition-colors duration-200"
                 >
                   {link.name}
                 </Link>

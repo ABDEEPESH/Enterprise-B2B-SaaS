@@ -9,8 +9,7 @@ import {
   Rocket,
   Target,
   Lightbulb,
-  Award,
-  ArrowRight
+  Award
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 
@@ -148,9 +147,9 @@ const Careers = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-800">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 via-white to-secondary-50 py-20">
+      <section className="bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-20">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -161,23 +160,23 @@ const Careers = () => {
             <div className="w-20 h-20 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Briefcase className="w-10 h-10 text-primary-600" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-secondary-900 dark:text-white mb-6">
               Join Our Team
             </h1>
-            <p className="text-xl text-secondary-600 leading-relaxed">
+            <p className="text-xl text-secondary-600 dark:text-slate-300 leading-relaxed">
               Build the future of enterprise technology with a team that values innovation, 
               collaboration, and continuous growth. Your next career chapter starts here.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <div className="flex items-center gap-2 text-sm text-secondary-600">
+              <div className="flex items-center gap-2 text-sm text-secondary-600 dark:text-slate-300">
                 <Users className="w-4 h-4" />
                 <span>150+ Team Members</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-secondary-600">
+              <div className="flex items-center gap-2 text-sm text-secondary-600 dark:text-slate-300">
                 <MapPin className="w-4 h-4" />
                 <span>Global Remote Team</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-secondary-600">
+              <div className="flex items-center gap-2 text-sm text-secondary-600 dark:text-slate-300">
                 <Award className="w-4 h-4" />
                 <span>Best Places to Work 2024</span>
               </div>
@@ -187,7 +186,7 @@ const Careers = () => {
       </section>
 
       {/* Why Join Us */}
-      <section className="py-16 bg-secondary-50">
+      <section className="py-16 bg-secondary-50 dark:bg-slate-800">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -195,8 +194,8 @@ const Careers = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">Why Join Enterprise Platform?</h2>
-            <p className="text-secondary-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-4">Why Join Enterprise Platform?</h2>
+            <p className="text-secondary-600 dark:text-slate-300 max-w-2xl mx-auto">
               We're not just building software; we're transforming how businesses operate. 
               Join us in creating solutions that matter.
             </p>
@@ -225,13 +224,13 @@ const Careers = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-primary-600" />
                 </div>
-                <h3 className="font-semibold text-secondary-900 mb-3">{item.title}</h3>
-                <p className="text-secondary-600">{item.description}</p>
+                <h3 className="font-semibold text-secondary-900 dark:text-white mb-3">{item.title}</h3>
+                <p className="text-secondary-600 dark:text-slate-300">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -247,8 +246,8 @@ const Careers = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">Comprehensive Benefits</h2>
-            <p className="text-secondary-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-4">Comprehensive Benefits</h2>
+            <p className="text-secondary-600 dark:text-slate-300 max-w-2xl mx-auto">
               We invest in our people with competitive compensation, comprehensive benefits, 
               and a culture that supports your personal and professional growth.
             </p>
@@ -261,15 +260,15 @@ const Careers = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-6"
+                className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-700 dark:to-slate-800 rounded-xl p-6"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
                     <benefit.icon className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-2">{benefit.title}</h3>
-                    <p className="text-secondary-600 text-sm">{benefit.description}</p>
+                    <h3 className="font-semibold text-secondary-900 dark:text-white mb-2">{benefit.title}</h3>
+                    <p className="text-secondary-600 dark:text-slate-300 text-sm">{benefit.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -279,7 +278,7 @@ const Careers = () => {
       </section>
 
       {/* Open Positions */}
-      <section className="py-16 bg-secondary-50">
+      <section className="py-16 bg-secondary-50 dark:bg-slate-800">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -287,8 +286,8 @@ const Careers = () => {
             transition={{ duration: 0.6, delay: 1.0 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">Open Positions</h2>
-            <p className="text-secondary-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-4">Open Positions</h2>
+            <p className="text-secondary-600 dark:text-slate-300 max-w-2xl mx-auto">
               Explore our current openings and find the role that matches your skills and aspirations.
             </p>
           </motion.div>
@@ -300,13 +299,13 @@ const Careers = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 + index * 0.1 }}
-                className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                className="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
               >
                 <div className="p-6">
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                     <div>
-                      <h3 className="text-xl font-semibold text-secondary-900 mb-2">{position.title}</h3>
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-secondary-600">
+                      <h3 className="text-xl font-semibold text-secondary-900 dark:text-white mb-2">{position.title}</h3>
+                      <div className="flex flex-wrap items-center gap-4 text-sm text-secondary-600 dark:text-slate-300">
                         <span className="flex items-center gap-1">
                           <Briefcase className="w-4 h-4" />
                           {position.department}
@@ -330,13 +329,13 @@ const Careers = () => {
                     </AnimatedButton>
                   </div>
                   
-                  <p className="text-secondary-600 mb-4">{position.description}</p>
+                  <p className="text-secondary-600 dark:text-slate-300 mb-4">{position.description}</p>
                   
                   <div className="border-t pt-4">
-                    <h4 className="font-medium text-secondary-900 mb-2">Key Requirements:</h4>
+                    <h4 className="font-medium text-secondary-900 dark:text-white mb-2">Key Requirements:</h4>
                     <ul className="space-y-1">
                       {position.requirements.map((req, reqIndex) => (
-                        <li key={reqIndex} className="text-sm text-secondary-600 flex items-start gap-2">
+                        <li key={reqIndex} className="text-sm text-secondary-600 dark:text-slate-300 flex items-start gap-2">
                           <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0" />
                           {req}
                         </li>
@@ -349,7 +348,7 @@ const Careers = () => {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-secondary-600 mb-6">
+            <p className="text-secondary-600 dark:text-slate-300 mb-6">
               Don't see the perfect fit? We're always looking for talented people to join our team.
             </p>
             <AnimatedButton variant="outline">
@@ -385,28 +384,28 @@ const Careers = () => {
                     "Work-life integration and flexibility"
                   ].map((value, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-white rounded-full" />
+                      <div className="w-2 h-2 bg-white dark:bg-slate-800 rounded-full" />
                       <span className="text-white/90">{value}</span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8">
+              <div className="bg-white dark:bg-slate-800/10 backdrop-blur-sm rounded-xl p-8">
                 <h3 className="text-xl font-semibold mb-6">Life at Enterprise Platform</h3>
                 <div className="space-y-4">
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                  <div className="bg-white dark:bg-slate-800/20 backdrop-blur-sm rounded-lg p-4">
                     <h4 className="font-medium mb-2">Team Events</h4>
                     <p className="text-white/80 text-sm">
                       Monthly team building activities, annual retreats, and regular social events.
                     </p>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                  <div className="bg-white dark:bg-slate-800/20 backdrop-blur-sm rounded-lg p-4">
                     <h4 className="font-medium mb-2">Learning & Development</h4>
                     <p className="text-white/80 text-sm">
                       Weekly tech talks, workshops, and access to online learning platforms.
                     </p>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm rounded-lg p-4">
+                  <div className="bg-white dark:bg-slate-800/20 backdrop-blur-sm rounded-lg p-4">
                     <h4 className="font-medium mb-2">Innovation Time</h4>
                     <p className="text-white/80 text-sm">
                       Dedicated time for personal projects and experimentation with new technologies.
@@ -420,7 +419,7 @@ const Careers = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
+      <section className="py-16 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-700 dark:to-slate-800">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -428,10 +427,10 @@ const Careers = () => {
             transition={{ duration: 0.6, delay: 2.0 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl font-bold text-secondary-900 mb-6">
+            <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-6">
               Ready to Shape the Future?
             </h2>
-            <p className="text-xl text-secondary-600 mb-8">
+            <p className="text-xl text-secondary-600 dark:text-slate-300 mb-8">
               Join a team that's passionate about building innovative solutions that transform 
               how enterprises operate and grow.
             </p>

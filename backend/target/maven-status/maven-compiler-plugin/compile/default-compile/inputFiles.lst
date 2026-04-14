@@ -1,0 +1,12 @@
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\B2bSaasPlatformApplication.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\config\MongoConfig.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\config\SecurityConfig.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\controller\LeadController.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\domain\Lead.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\dto\LeadCreateRequest.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\dto\LeadResponse.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\exception\DuplicateLeadException.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\exception\GlobalExceptionHandler.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\exception\LeadNotFoundException.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\service\LeadRepository.java
+D:\enterprise-platform\backend\src\main\java\com\enterprise\platform\service\LeadService.java

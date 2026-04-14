@@ -94,7 +94,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -120,7 +120,7 @@ const Contact = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-600 dark:text-slate-300"
             >
               Ready to take your enterprise to the next level? Our team of experts is here to 
               understand your challenges and craft solutions that drive real results. 
@@ -130,15 +130,15 @@ const Contact = () => {
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-8">
               <div className="flex items-center">
                 <CheckCircle className="w-5 h-5 text-success-500 mr-2" />
-                <span className="text-secondary-600">Response within 24 hours</span>
+                <span className="text-secondary-600 dark:text-slate-300">Response within 24 hours</span>
               </div>
               <div className="flex items-center">
                 <CheckCircle className="w-5 h-5 text-success-500 mr-2" />
-                <span className="text-secondary-600">Free initial consultation</span>
+                <span className="text-secondary-600 dark:text-slate-300">Free initial consultation</span>
               </div>
               <div className="flex items-center">
                 <CheckCircle className="w-5 h-5 text-success-500 mr-2" />
-                <span className="text-secondary-600">No obligation</span>
+                <span className="text-secondary-600 dark:text-slate-300">No obligation</span>
               </div>
             </motion.div>
           </motion.div>
@@ -146,7 +146,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form & Info Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Information */}
@@ -165,8 +165,8 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Phone</h3>
-                    <p className="text-secondary-600">+1 (555) 123-4567</p>
+                    <h3 className="font-semibold text-secondary-900 dark:text-white mb-1">Phone</h3>
+                    <p className="text-secondary-600 dark:text-slate-300">+1 (555) 123-4567</p>
                     <p className="text-sm text-secondary-500">Mon-Fri 9AM-6PM EST</p>
                   </div>
                 </div>
@@ -176,8 +176,8 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Email</h3>
-                    <p className="text-secondary-600">contact@enterprise.com</p>
+                    <h3 className="font-semibold text-secondary-900 dark:text-white mb-1">Email</h3>
+                    <p className="text-secondary-600 dark:text-slate-300">contact@enterprise.com</p>
                     <p className="text-sm text-secondary-500">24/7 support available</p>
                   </div>
                 </div>
@@ -187,48 +187,48 @@ const Contact = () => {
                     <MapPin className="w-6 h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Office</h3>
-                    <p className="text-secondary-600">123 Enterprise Ave</p>
-                    <p className="text-secondary-600">San Francisco, CA 94105</p>
+                    <h3 className="font-semibold text-secondary-900 dark:text-white mb-1">Office</h3>
+                    <p className="text-secondary-600 dark:text-slate-300">123 Enterprise Ave</p>
+                    <p className="text-secondary-600 dark:text-slate-300">San Francisco, CA 94105</p>
                   </div>
                 </div>
               </div>
 
               {/* Support Info */}
-              <div className="mt-12 p-6 bg-secondary-50 rounded-lg">
-                <h3 className="font-semibold text-secondary-900 mb-4 flex items-center">
+              <div className="mt-12 p-6 bg-secondary-50 dark:bg-slate-800 rounded-lg">
+                <h3 className="font-semibold text-secondary-900 dark:text-white mb-4 flex items-center">
                   <Clock className="w-5 h-5 mr-2 text-primary-600" />
                   Support Hours
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-secondary-600">Monday - Friday</span>
-                    <span className="font-medium text-secondary-900">9:00 AM - 6:00 PM EST</span>
+                    <span className="text-secondary-600 dark:text-slate-300">Monday - Friday</span>
+                    <span className="font-medium text-secondary-900 dark:text-white">9:00 AM - 6:00 PM EST</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-secondary-600">Saturday</span>
-                    <span className="font-medium text-secondary-900">10:00 AM - 4:00 PM EST</span>
+                    <span className="text-secondary-600 dark:text-slate-300">Saturday</span>
+                    <span className="font-medium text-secondary-900 dark:text-white">10:00 AM - 4:00 PM EST</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-secondary-600">Sunday</span>
-                    <span className="font-medium text-secondary-900">Emergency Support Only</span>
+                    <span className="text-secondary-600 dark:text-slate-300">Sunday</span>
+                    <span className="font-medium text-secondary-900 dark:text-white">Emergency Support Only</span>
                   </div>
                 </div>
               </div>
 
               {/* Team Info */}
               <div className="mt-8 p-6 bg-primary-50 rounded-lg">
-                <h3 className="font-semibold text-secondary-900 mb-4 flex items-center">
+                <h3 className="font-semibold text-secondary-900 dark:text-white mb-4 flex items-center">
                   <Users className="w-5 h-5 mr-2 text-primary-600" />
                   Our Team
                 </h3>
-                <p className="text-sm text-secondary-600 mb-4">
+                <p className="text-sm text-secondary-600 dark:text-slate-300 mb-4">
                   Our dedicated team of enterprise solutions experts is ready to help you 
                   tackle your biggest challenges and achieve your business goals.
                 </p>
                 <div className="flex items-center text-sm">
                   <CheckCircle className="w-4 h-4 text-success-500 mr-2" />
-                  <span className="text-secondary-600">500+ years combined experience</span>
+                  <span className="text-secondary-600 dark:text-slate-300">500+ years combined experience</span>
                 </div>
               </div>
             </motion.div>

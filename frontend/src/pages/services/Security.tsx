@@ -1,23 +1,18 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { 
   Shield, 
   Lock, 
   Eye, 
   AlertTriangle, 
-  ArrowRight, 
-  CheckCircle, 
-  Database, 
-  Globe, 
-  Key,
-  Bug,
-  Certificate,
-  Fingerprint
+  ArrowRight
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const Security = () => {
+  const { openLeadModal } = useModal()
   const services = [
     {
       title: 'Security Assessment',
@@ -36,7 +31,7 @@ const Security = () => {
     {
       title: 'Compliance Management',
       description: 'Ensure your organization meets industry standards and regulatory requirements.',
-      icon: Certificate,
+      icon: Shield,
       features: ['GDPR Compliance', 'SOC 2', 'ISO 27001', 'HIPAA Compliance'],
       color: 'success' as const
     }
@@ -61,7 +56,7 @@ const Security = () => {
       description: 'Protect sensitive data with enterprise-grade encryption and access controls.'
     },
     {
-      icon: Certificate,
+      icon: Shield,
       title: 'Compliance Assurance',
       description: 'Meet regulatory requirements and industry standards with confidence.'
     },
@@ -95,7 +90,7 @@ const Security = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-red-50 to-orange-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-red-50 to-orange-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -121,7 +116,7 @@ const Security = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-900 dark:text-slate-300"
             >
               Protect your business from cyber threats with comprehensive security solutions. 
               Our expert team provides end-to-end security services to safeguard your 
@@ -129,12 +124,10 @@ const Security = () => {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <AnimatedButton size="lg">
+                <AnimatedButton size="lg" onClick={openLeadModal}>
                   Schedule Security Audit
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </AnimatedButton>
-              </Link>
               <Link to="/process">
                 <AnimatedButton variant="outline" size="lg">
                   Our Process
@@ -146,7 +139,7 @@ const Security = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -156,7 +149,7 @@ const Security = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Security Services</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Comprehensive security solutions to protect your digital assets and ensure compliance.
             </p>
           </motion.div>
@@ -179,7 +172,7 @@ const Security = () => {
       </section>
 
       {/* Security Areas */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +182,7 @@ const Security = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Security Domains</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Comprehensive security coverage across all critical areas of your infrastructure.
             </p>
           </motion.div>
@@ -208,7 +201,7 @@ const Security = () => {
                   <Shield className="w-8 h-8 text-red-600" />
                 </div>
                 <h3 className="heading-4 mb-2">{area.name}</h3>
-                <p className="text-sm text-secondary-600">{area.description}</p>
+                <p className="text-sm text-secondary-900 dark:text-slate-300">{area.description}</p>
               </motion.div>
             ))}
           </div>
@@ -216,7 +209,7 @@ const Security = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -242,7 +235,7 @@ const Security = () => {
                   </div>
                   <div>
                     <h3 className="heading-4 mb-2">{benefit.title}</h3>
-                    <p className="body text-secondary-600">{benefit.description}</p>
+                    <p className="body text-secondary-900 dark:text-slate-300">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -252,7 +245,7 @@ const Security = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white dark:from-red-700 dark:to-orange-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -266,12 +259,10 @@ const Security = () => {
               Don't wait for a security breach to protect your assets. Let's conduct a 
               comprehensive security assessment and strengthen your defenses.
             </p>
-            <Link to="/contact">
-              <AnimatedButton variant="secondary" size="lg" className="bg-white text-red-600 hover:bg-secondary-50">
+            <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-red-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                 Schedule Security Assessment
                 <ArrowRight className="w-5 h-5 ml-2" />
               </AnimatedButton>
-            </Link>
           </motion.div>
         </div>
       </section>

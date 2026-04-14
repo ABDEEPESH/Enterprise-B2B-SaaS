@@ -1,24 +1,21 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { 
   Lightbulb, 
   Target, 
-  TrendingUp, 
-  Users, 
   ArrowRight, 
-  CheckCircle, 
-  BarChart3, 
-  Globe, 
-  Shield,
-  Zap,
   Brain,
   Eye,
-  Compass
+  Compass,
+  Zap,
+  TrendingUp
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const Strategy = () => {
+  const { openLeadModal } = useModal()
   const services = [
     {
       title: 'Digital Transformation',
@@ -133,7 +130,7 @@ const Strategy = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -159,7 +156,7 @@ const Strategy = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-600 dark:text-slate-300 dark:text-slate-300"
             >
               Transform your business vision into reality with data-driven strategies that 
               drive growth, innovation, and competitive advantage. Our expert consultants 
@@ -167,12 +164,10 @@ const Strategy = () => {
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <Link to="/contact">
-                <AnimatedButton size="lg">
+                <AnimatedButton size="lg" onClick={openLeadModal}>
                   Schedule Strategy Session
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </AnimatedButton>
-              </Link>
               <Link to="/process">
                 <AnimatedButton variant="outline" size="lg">
                   Our Process
@@ -184,7 +179,7 @@ const Strategy = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -194,7 +189,7 @@ const Strategy = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Strategic Services</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Comprehensive strategic consulting services designed to address your most 
               critical business challenges and opportunities.
             </p>
@@ -218,7 +213,7 @@ const Strategy = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -228,7 +223,7 @@ const Strategy = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Our Strategic Approach</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               A systematic methodology that ensures comprehensive analysis, strategic alignment, 
               and successful implementation.
             </p>
@@ -248,7 +243,7 @@ const Strategy = () => {
                   <span className="text-2xl font-bold text-primary-600">{item.step}</span>
                 </div>
                 <h3 className="heading-4 mb-4">{item.title}</h3>
-                <p className="body text-secondary-600">{item.description}</p>
+                <p className="body text-secondary-600 dark:text-slate-300">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -256,7 +251,7 @@ const Strategy = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -282,7 +277,7 @@ const Strategy = () => {
                   </div>
                   <div>
                     <h3 className="heading-4 mb-2">{benefit.title}</h3>
-                    <p className="body text-secondary-600">{benefit.description}</p>
+                    <p className="body text-secondary-600 dark:text-slate-300">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -292,7 +287,7 @@ const Strategy = () => {
       </section>
 
       {/* Case Studies */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -302,7 +297,7 @@ const Strategy = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Success Stories</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Real results from real businesses that have transformed their operations 
               through strategic partnership.
             </p>
@@ -321,18 +316,18 @@ const Strategy = () => {
                 <h3 className="heading-4 mb-3 text-primary-600">{study.company}</h3>
                 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-secondary-900 mb-2">Challenge</h4>
-                  <p className="text-sm text-secondary-600">{study.challenge}</p>
+                  <h4 className="font-semibold text-secondary-900 dark:text-white mb-2">Challenge</h4>
+                  <p className="text-sm text-secondary-600 dark:text-slate-300">{study.challenge}</p>
                 </div>
                 
                 <div className="mb-4">
-                  <h4 className="font-semibold text-secondary-900 mb-2">Solution</h4>
-                  <p className="text-sm text-secondary-600">{study.solution}</p>
+                  <h4 className="font-semibold text-secondary-900 dark:text-white mb-2">Solution</h4>
+                  <p className="text-sm text-secondary-600 dark:text-slate-300">{study.solution}</p>
                 </div>
                 
-                <div className="pt-4 border-t border-secondary-200">
+                <div className="pt-4 border-t border-secondary-200 dark:border-slate-700">
                   <h4 className="font-semibold text-success-600 mb-1">Results</h4>
-                  <p className="text-sm text-secondary-600">{study.results}</p>
+                  <p className="text-sm text-secondary-600 dark:text-slate-300">{study.results}</p>
                 </div>
               </motion.div>
             ))}
@@ -355,12 +350,10 @@ const Strategy = () => {
               Let's discuss how our strategic expertise can help you achieve your business goals. 
               Schedule a complimentary strategy session with our experts.
             </p>
-            <Link to="/contact">
-              <AnimatedButton variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-secondary-50">
+            <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                 Schedule Strategy Session
                 <ArrowRight className="w-5 h-5 ml-2" />
               </AnimatedButton>
-            </Link>
           </motion.div>
         </div>
       </section>

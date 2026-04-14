@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import { ModalProvider } from './context/ModalContext'
+import { ThemeProvider } from './context/ThemeContext'
 import MasterLayout from './components/MasterLayout'
+import LeadCaptureModal from './components/LeadCaptureModal'
 
 // Core Pages
 import Home from './pages/Home'
@@ -38,43 +38,48 @@ import ThankYou from './pages/ThankYou'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white text-secondary-900">
-      <Routes>
-        <Route path="/" element={<MasterLayout />}>
-          {/* Core Pages */}
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="process" element={<Process />} />
-          <Route path="pricing" element={<Pricing />} />
-          <Route path="contact" element={<Contact />} />
-          
-          {/* Service Pages */}
-          <Route path="services/strategy" element={<Strategy />} />
-          <Route path="services/design" element={<Design />} />
-          <Route path="services/development" element={<Development />} />
-          <Route path="services/cloud" element={<Cloud />} />
-          <Route path="services/security" element={<Security />} />
-          
-          {/* Industry Pages */}
-          <Route path="industries/fintech" element={<FinTech />} />
-          <Route path="industries/healthtech" element={<HealthTech />} />
-          <Route path="industries/ecommerce" element={<Ecommerce />} />
-          <Route path="industries/logistics" element={<Logistics />} />
-          <Route path="industries/ai" element={<AI />} />
-          
-          {/* Legal/Resources Pages */}
-          <Route path="blog" element={<BlogIndex />} />
-          <Route path="blog/:slug" element={<BlogPost />} />
-          <Route path="privacy" element={<Privacy />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="careers" element={<Careers />} />
-          
-          {/* Utility Pages */}
-          <Route path="thank-you" element={<ThankYou />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </div>
+    <ThemeProvider>
+      <ModalProvider>
+        <div className="min-h-screen bg-white dark:bg-slate-900 text-secondary-900 dark:text-slate-100 transition-colors duration-300">
+          <Routes>
+            <Route path="/" element={<MasterLayout />}>
+              {/* Core Pages */}
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="process" element={<Process />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="contact" element={<Contact />} />
+              
+              {/* Service Pages */}
+              <Route path="services/strategy" element={<Strategy />} />
+              <Route path="services/design" element={<Design />} />
+              <Route path="services/development" element={<Development />} />
+              <Route path="services/cloud" element={<Cloud />} />
+              <Route path="services/security" element={<Security />} />
+              
+              {/* Industry Pages */}
+              <Route path="industries/fintech" element={<FinTech />} />
+              <Route path="industries/healthtech" element={<HealthTech />} />
+              <Route path="industries/ecommerce" element={<Ecommerce />} />
+              <Route path="industries/logistics" element={<Logistics />} />
+              <Route path="industries/ai" element={<AI />} />
+              
+              {/* Legal/Resources Pages */}
+              <Route path="blog" element={<BlogIndex />} />
+              <Route path="blog/:slug" element={<BlogPost />} />
+              <Route path="privacy" element={<Privacy />} />
+              <Route path="terms" element={<Terms />} />
+              <Route path="careers" element={<Careers />} />
+              
+              {/* Utility Pages */}
+              <Route path="thank-you" element={<ThankYou />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+          <LeadCaptureModal />
+        </div>
+      </ModalProvider>
+    </ThemeProvider>
   )
 }
 

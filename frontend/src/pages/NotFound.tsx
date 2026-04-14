@@ -5,7 +5,7 @@ import AnimatedButton from '../components/AnimatedButton'
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
+    <div className="min-h-screen bg-white dark:bg-slate-800 flex items-center justify-center">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -32,18 +32,18 @@ const NotFound = () => {
           </motion.div>
 
           {/* Error Message */}
-          <h1 className="text-3xl font-bold text-secondary-900 mb-4">
+          <h1 className="text-3xl font-bold text-secondary-900 dark:text-white mb-4">
             Page Not Found
           </h1>
           
-          <p className="text-xl text-secondary-600 mb-8 leading-relaxed">
+          <p className="text-xl text-secondary-600 dark:text-slate-300 mb-8 leading-relaxed">
             Oops! The page you're looking for seems to have vanished into the digital ether. 
             Let's get you back on track.
           </p>
 
           {/* Search Suggestions */}
-          <div className="bg-gradient-to-br from-primary-50 to-secondary-50 rounded-xl p-6 mb-8">
-            <h2 className="font-semibold text-secondary-900 mb-4">Maybe you were looking for:</h2>
+          <div className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-slate-700 dark:to-slate-800 rounded-xl p-6 mb-8">
+            <h2 className="font-semibold text-secondary-900 dark:text-white mb-4">Maybe you were looking for:</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               <Link to="/" className="flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors duration-200">
                 <Home className="w-4 h-4" />
@@ -73,20 +73,15 @@ const NotFound = () => {
               </AnimatedButton>
             </Link>
             
-            <button
-              onClick={() => window.history.back()}
-              className="w-full sm:w-auto"
-            >
-              <AnimatedButton variant="outline" className="w-full sm:w-auto">
-                <ArrowLeft className="w-5 h-5 mr-2" />
-                Go Back
-              </AnimatedButton>
-            </button>
+            <AnimatedButton variant="outline" className="w-full sm:w-auto" onClick={() => window.history.back()}>
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Go Back
+            </AnimatedButton>
           </div>
 
           {/* Help Section */}
           <div className="mt-12 text-center">
-            <p className="text-secondary-600 mb-4">
+            <p className="text-secondary-600 dark:text-slate-300 mb-4">
               Still can't find what you're looking for?
             </p>
             <div className="flex items-center justify-center gap-2 text-sm text-secondary-500">

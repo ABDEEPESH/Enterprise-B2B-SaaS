@@ -1,23 +1,21 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { 
   Palette, 
   Eye, 
-  Zap, 
-  Users, 
   ArrowRight, 
-  CheckCircle, 
   Smartphone, 
-  Monitor, 
-  Tablet,
-  Lightbulb,
   Target,
-  Sparkles
+  Sparkles,
+  Users,
+  Zap
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 import ServiceCard from '../../components/ServiceCard'
 
 const Design = () => {
+  const { openLeadModal } = useModal()
   const services = [
     {
       title: 'UI/UX Design',
@@ -111,7 +109,7 @@ const Design = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-accent-50 to-primary-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-accent-50 to-primary-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -137,7 +135,7 @@ const Design = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-900 dark:text-slate-300"
             >
               Transform your digital presence with human-centered design that combines 
               aesthetics with functionality. Our expert designers create experiences 
@@ -162,7 +160,7 @@ const Design = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -172,7 +170,7 @@ const Design = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Design Services</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               Comprehensive design services that cover every aspect of your digital presence.
             </p>
           </motion.div>
@@ -195,7 +193,7 @@ const Design = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -205,7 +203,7 @@ const Design = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Our Design Process</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-900 dark:text-slate-300">
               A proven methodology that ensures exceptional design outcomes through research, 
               creativity, and iterative refinement.
             </p>
@@ -225,7 +223,7 @@ const Design = () => {
                   <span className="text-2xl font-bold text-accent-600">{item.step}</span>
                 </div>
                 <h3 className="heading-4 mb-4">{item.title}</h3>
-                <p className="body text-secondary-600">{item.description}</p>
+                <p className="body text-secondary-900 dark:text-slate-300">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -233,7 +231,7 @@ const Design = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -259,7 +257,7 @@ const Design = () => {
                   </div>
                   <div>
                     <h3 className="heading-4 mb-2">{benefit.title}</h3>
-                    <p className="body text-secondary-600">{benefit.description}</p>
+                    <p className="body text-secondary-900 dark:text-slate-300">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -269,7 +267,7 @@ const Design = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-accent-600 to-primary-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-accent-600 to-primary-600 text-white dark:from-accent-700 dark:to-primary-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -283,12 +281,10 @@ const Design = () => {
               Let's create exceptional experiences that your users will love and your 
               business will benefit from. Schedule a design consultation today.
             </p>
-            <Link to="/contact">
-              <AnimatedButton variant="secondary" size="lg" className="bg-white text-accent-600 hover:bg-secondary-50">
+              <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-accent-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                 Schedule Design Consultation
                 <ArrowRight className="w-5 h-5 ml-2" />
               </AnimatedButton>
-            </Link>
           </motion.div>
         </div>
       </section>

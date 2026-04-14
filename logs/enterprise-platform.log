@@ -1,0 +1,38 @@
+2026-04-14 16:20:20.379 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 2332 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
+2026-04-14 16:20:20.380 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-14 16:20:21.033 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-04-14 16:20:21.063 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 1 MongoDB repository interface.
+2026-04-14 16:20:21.823 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-14 16:20:21.834 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-14 16:20:21.834 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-04-14 16:20:21.882 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-14 16:20:21.882 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1442 ms
+2026-04-14 16:20:22.607 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: f4545a11-3635-4cd1-a1e7-c8b395cb479e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-14 16:20:22.891 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-04-14 16:20:22.927 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70aa58e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@154f8280, org.springframework.security.web.context.SecurityContextHolderFilter@5814b4fb, org.springframework.security.web.header.HeaderWriterFilter@6cb194f5, org.springframework.web.filter.CorsFilter@24f90aff, org.springframework.security.web.authentication.logout.LogoutFilter@16d4024e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ba13fed, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@651cedfb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7252bdb, org.springframework.security.web.session.SessionManagementFilter@2e8986b6, org.springframework.security.web.access.ExceptionTranslationFilter@4ff9f715, org.springframework.security.web.access.intercept.AuthorizationFilter@4f2544b0]
+2026-04-14 16:20:23.203 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-04-14 16:20:23.213 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 3.23 seconds (process running for 3.515)
+2026-04-14 16:26:16.796 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 16368 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
+2026-04-14 16:26:16.797 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-14 16:26:17.373 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-04-14 16:26:17.402 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 1 MongoDB repository interface.
+2026-04-14 16:26:18.141 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-04-14 16:26:18.149 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-14 16:26:18.149 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-04-14 16:26:18.199 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-14 16:26:18.199 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1352 ms
+2026-04-14 16:26:18.918 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 34f7e736-f4d6-4fc2-9b4a-183cbe58c348
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-14 16:26:19.205 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-04-14 16:26:19.246 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7252bdb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25ea068e, org.springframework.security.web.context.SecurityContextHolderFilter@651cedfb, org.springframework.security.web.header.HeaderWriterFilter@308c65e0, org.springframework.web.filter.CorsFilter@4cd8db31, org.springframework.security.web.authentication.logout.LogoutFilter@3a1a0bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73d83141, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31443680, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@201a8ea7, org.springframework.security.web.session.SessionManagementFilter@5814b4fb, org.springframework.security.web.access.ExceptionTranslationFilter@74b7497b, org.springframework.security.web.access.intercept.AuthorizationFilter@70aa58e1]
+2026-04-14 16:26:19.530 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2026-04-14 16:26:19.541 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 3.14 seconds (process running for 3.42)

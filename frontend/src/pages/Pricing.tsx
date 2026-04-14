@@ -1,15 +1,10 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { useModal } from '../context/ModalContext'
 import { 
   Check, 
   X, 
-  Star, 
   ArrowRight, 
-  Zap, 
-  Shield, 
-  Users, 
-  HeadphonesIcon,
   Crown,
   Building,
   Rocket
@@ -17,7 +12,8 @@ import {
 import AnimatedButton from '../components/AnimatedButton'
 
 const Pricing = () => {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual')
+  const { openLeadModal } = useModal()
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly')
 
   const plans = [
     {
@@ -161,7 +157,7 @@ const Pricing = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50">
+      <section className="py-20 lg:py-32 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-slate-900 dark:to-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -187,7 +183,7 @@ const Pricing = () => {
 
             <motion.p 
               variants={itemVariants}
-              className="body-lg mb-8 text-secondary-600"
+              className="body-lg mb-8 text-secondary-600 dark:text-slate-300"
             >
               Choose the perfect plan for your business. All plans include our core platform 
               with enterprise-grade security, 24/7 monitoring, and regular updates.
@@ -195,13 +191,13 @@ const Pricing = () => {
 
             {/* Billing Toggle */}
             <motion.div variants={itemVariants} className="flex justify-center mb-8">
-              <div className="bg-white rounded-lg shadow-sm border border-secondary-200 p-1 inline-flex">
+              <div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-secondary-200 p-1 inline-flex">
                 <button
                   onClick={() => setBillingCycle('monthly')}
                   className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     billingCycle === 'monthly'
                       ? 'bg-primary-600 text-white'
-                      : 'text-secondary-600 hover:text-secondary-900'
+                      : 'text-secondary-600 dark:text-slate-300 hover:text-secondary-900 dark:text-white'
                   }`}
                 >
                   Monthly Billing
@@ -211,7 +207,7 @@ const Pricing = () => {
                   className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                     billingCycle === 'annual'
                       ? 'bg-primary-600 text-white'
-                      : 'text-secondary-600 hover:text-secondary-900'
+                      : 'text-secondary-600 dark:text-slate-300 hover:text-secondary-900 dark:text-white'
                   }`}
                 >
                   Annual Billing
@@ -226,7 +222,7 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             variants={containerVariants}
@@ -275,13 +271,13 @@ const Pricing = () => {
                     </div>
                     
                     <h3 className="heading-3 mb-2">{plan.name}</h3>
-                    <p className="body text-secondary-600 mb-6">{plan.description}</p>
+                    <p className="body text-secondary-600 dark:text-slate-300 mb-6">{plan.description}</p>
                     
                     <div className="mb-4">
-                      <span className="text-4xl font-bold text-secondary-900">
+                      <span className="text-4xl font-bold text-secondary-900 dark:text-white">
                         ${plan.price.toLocaleString()}
                       </span>
-                      <span className="text-secondary-600">/month</span>
+                      <span className="text-secondary-600 dark:text-slate-300">/month</span>
                     </div>
                     
                     {billingCycle === 'annual' && (
@@ -309,19 +305,18 @@ const Pricing = () => {
                   </div>
 
                   {/* CTA Button */}
-                  <Link to="/contact">
-                    <AnimatedButton 
+                  <AnimatedButton 
                       size="lg" 
                       className={`w-full ${
                         plan.popular 
                           ? '' 
                           : 'variant="outline"'
                       }`}
+                      onClick={openLeadModal}
                     >
                       {plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
                       <ArrowRight className="w-5 h-5 ml-2" />
                     </AnimatedButton>
-                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -330,7 +325,7 @@ const Pricing = () => {
       </section>
 
       {/* Add-ons Section */}
-      <section className="py-20 bg-secondary-50">
+      <section className="py-20 bg-secondary-50 dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -340,7 +335,7 @@ const Pricing = () => {
             className="text-center mb-16"
           >
             <h2 className="heading-2 mb-6">Enhance Your Plan</h2>
-            <p className="body-lg max-w-3xl mx-auto text-secondary-600">
+            <p className="body-lg max-w-3xl mx-auto text-secondary-600 dark:text-slate-300">
               Add powerful features to your plan with our flexible add-ons. 
               Mix and match to create the perfect solution for your business.
             </p>
@@ -361,12 +356,12 @@ const Pricing = () => {
                 viewport={{ once: true }}
                 className="card p-6"
               >
-                <h3 className="font-semibold text-secondary-900 mb-2">{addOn.name}</h3>
+                <h3 className="font-semibold text-secondary-900 dark:text-white mb-2">{addOn.name}</h3>
                 <div className="text-2xl font-bold text-primary-600 mb-3">
                   ${addOn.price.toLocaleString()}
-                  <span className="text-sm text-secondary-600 font-normal">/mo</span>
+                  <span className="text-sm text-secondary-600 dark:text-slate-300 font-normal">/mo</span>
                 </div>
-                <p className="text-sm text-secondary-600">{addOn.description}</p>
+                <p className="text-sm text-secondary-600 dark:text-slate-300">{addOn.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -374,7 +369,7 @@ const Pricing = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-800">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -416,8 +411,8 @@ const Pricing = () => {
                   viewport={{ once: true }}
                   className="card p-6"
                 >
-                  <h3 className="font-semibold text-secondary-900 mb-3">{faq.question}</h3>
-                  <p className="text-secondary-600">{faq.answer}</p>
+                  <h3 className="font-semibold text-secondary-900 dark:text-white mb-3">{faq.question}</h3>
+                  <p className="text-secondary-600 dark:text-slate-300">{faq.answer}</p>
                 </motion.div>
               ))}
             </div>
@@ -426,7 +421,7 @@ const Pricing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600 text-white dark:from-primary-700 dark:to-accent-700">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -441,17 +436,13 @@ const Pricing = () => {
               digital transformation. Start your free trial today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
-                <AnimatedButton variant="secondary" size="lg" className="bg-white text-primary-600 hover:bg-secondary-50">
+              <AnimatedButton variant="secondary" size="lg" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-secondary-50 dark:bg-slate-800" onClick={openLeadModal}>
                   Start Free Trial
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </AnimatedButton>
-              </Link>
-              <Link to="/contact">
-                <AnimatedButton variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600">
+              <AnimatedButton variant="outline" size="lg" className="border-white text-white hover:bg-white dark:bg-slate-800 hover:text-primary-600" onClick={openLeadModal}>
                   Schedule Demo
                 </AnimatedButton>
-              </Link>
             </div>
           </motion.div>
         </div>

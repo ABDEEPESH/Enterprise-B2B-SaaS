@@ -1,20 +1,20 @@
-import { useParams, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useModal } from '../../context/ModalContext'
 import { motion } from 'framer-motion'
 import { 
   Calendar, 
   Clock, 
-  User, 
   ArrowLeft, 
   Share2, 
   Bookmark,
-  ThumbsUp,
   MessageCircle,
-  ChevronRight
+  ChevronRight,
+  ThumbsUp
 } from 'lucide-react'
 import AnimatedButton from '../../components/AnimatedButton'
 
 const BlogPost = () => {
-  const { slug } = useParams()
+  const { openLeadModal } = useModal()
 
   // Sample blog post data - in a real app, this would come from an API
   const blogPost = {
@@ -208,14 +208,14 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-slate-800">
       {/* Article Header */}
       <article className="pb-16">
         {/* Back Navigation */}
         <div className="container mx-auto px-6 pt-8">
           <Link 
             to="/blog"
-            className="inline-flex items-center gap-2 text-secondary-600 hover:text-primary-600 transition-colors duration-200 mb-8"
+            className="inline-flex items-center gap-2 text-secondary-600 dark:text-slate-300 hover:text-primary-600 transition-colors duration-200 mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Blog
@@ -223,7 +223,7 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
         </div>
 
         {/* Hero Section */}
-        <header className="bg-gradient-to-br from-primary-50 via-white to-secondary-50 pb-16">
+        <header className="bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 pb-16">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -252,23 +252,23 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-bold text-secondary-900 dark:text-white mb-6 leading-tight">
                 {blogPost.title}
               </h1>
 
               {/* Excerpt */}
-              <p className="text-xl text-secondary-600 mb-8 leading-relaxed max-w-3xl">
+              <p className="text-xl text-secondary-600 dark:text-slate-300 mb-8 leading-relaxed max-w-3xl">
                 {blogPost.excerpt}
               </p>
 
               {/* Author Info */}
-              <div className="flex items-center gap-4 p-6 bg-white rounded-xl shadow-sm">
+              <div className="flex items-center gap-4 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   {blogPost.author.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div className="flex-1">
-                  <div className="font-semibold text-secondary-900">{blogPost.author}</div>
-                  <div className="text-sm text-secondary-600">{blogPost.authorBio}</div>
+                  <div className="font-semibold text-secondary-900 dark:text-white">{blogPost.author}</div>
+                  <div className="text-sm text-secondary-600 dark:text-slate-300">{blogPost.authorBio}</div>
                 </div>
                 <div className="flex gap-3">
                   <button className="p-2 text-secondary-400 hover:text-primary-600 transition-colors duration-200">
@@ -293,17 +293,17 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
               className="prose prose-lg max-w-none"
             >
               {/* Article Body */}
-              <div className="bg-white rounded-xl shadow-sm p-8 md:p-12">
+              <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm p-8 md:p-12">
                 <div 
                   className="text-secondary-700 leading-relaxed space-y-6"
                   dangerouslySetInnerHTML={{ 
                     __html: blogPost.content.split('\n').map(paragraph => 
                       paragraph.startsWith('#') ? 
-                        `<h2 class="text-2xl font-bold text-secondary-900 mt-8 mb-4">${paragraph.replace('#', '').trim()}</h2>` :
+                        `<h2 class="text-2xl font-bold text-secondary-900 dark:text-white mt-8 mb-4">${paragraph.replace('#', '').trim()}</h2>` :
                         paragraph.startsWith('##') ?
-                          `<h3 class="text-xl font-semibold text-secondary-900 mt-6 mb-3">${paragraph.replace('##', '').trim()}</h3>` :
+                          `<h3 class="text-xl font-semibold text-secondary-900 dark:text-white mt-6 mb-3">${paragraph.replace('##', '').trim()}</h3>` :
                         paragraph.startsWith('###') ?
-                          `<h4 class="text-lg font-semibold text-secondary-900 mt-4 mb-2">${paragraph.replace('###', '').trim()}</h4>` :
+                          `<h4 class="text-lg font-semibold text-secondary-900 dark:text-white mt-4 mb-2">${paragraph.replace('###', '').trim()}</h4>` :
                         paragraph.startsWith('-') ?
                           `<li class="ml-6">${paragraph.replace('-', '').trim()}</li>` :
                         paragraph.match(/^\d+\./) ?
@@ -320,7 +320,7 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
                   {blogPost.tags.map((tag) => (
                     <span 
                       key={tag}
-                      className="px-3 py-1 bg-secondary-100 text-secondary-600 rounded-full text-sm"
+                      className="px-3 py-1 bg-secondary-100 text-secondary-600 dark:text-slate-300 rounded-full text-sm"
                     >
                       {tag}
                     </span>
@@ -329,22 +329,22 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
               </div>
 
               {/* Engagement Section */}
-              <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl p-6 md:p-8 mt-8">
+              <div className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-slate-700 dark:to-slate-800 rounded-xl p-6 md:p-8 mt-8">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="flex items-center gap-6">
-                    <button className="flex items-center gap-2 text-secondary-600 hover:text-primary-600 transition-colors duration-200">
+                    <button className="flex items-center gap-2 text-secondary-600 dark:text-slate-300 hover:text-primary-600 transition-colors duration-200">
                       <ThumbsUp className="w-5 h-5" />
                       <span className="font-medium">Helpful</span>
                     </button>
-                    <button className="flex items-center gap-2 text-secondary-600 hover:text-primary-600 transition-colors duration-200">
+                    <button className="flex items-center gap-2 text-secondary-600 dark:text-slate-300 hover:text-primary-600 transition-colors duration-200">
                       <MessageCircle className="w-5 h-5" />
                       <span className="font-medium">Comment</span>
                     </button>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-sm text-secondary-600">Share this article:</span>
+                    <span className="text-sm text-secondary-600 dark:text-slate-300">Share this article:</span>
                     <div className="flex gap-2">
-                      <button className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-secondary-600 hover:text-primary-600 transition-colors duration-200">
+                      <button className="w-8 h-8 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-secondary-600 dark:text-slate-300 hover:text-primary-600 transition-colors duration-200">
                         <Share2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -357,14 +357,14 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
       </article>
 
       {/* Related Articles */}
-      <section className="py-16 bg-secondary-50">
+      <section className="py-16 bg-secondary-50 dark:bg-slate-800">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="text-3xl font-bold text-secondary-900 mb-8 text-center">Related Articles</h2>
+            <h2 className="text-3xl font-bold text-secondary-900 dark:text-white mb-8 text-center">Related Articles</h2>
             
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {blogPost.relatedPosts.map((post, index) => (
@@ -373,12 +373,12 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                  className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+                  className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
                   <span className="text-xs font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded">
                     {post.category}
                   </span>
-                  <h3 className="font-semibold text-secondary-900 mt-3 mb-2">
+                  <h3 className="font-semibold text-secondary-900 dark:text-white mt-3 mb-2">
                     {post.title}
                   </h3>
                   <Link 
@@ -404,7 +404,7 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-600 to-secondary-600">
+      <section className="py-16 bg-gradient-to-r from-primary-600 to-secondary-600 text-white dark:from-primary-700 dark:to-secondary-700">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -418,7 +418,7 @@ The question is no longer whether to adopt AI, but how quickly and effectively y
             <p className="text-white/90 mb-8">
               Let's discuss how our AI solutions can drive innovation and growth for your organization.
             </p>
-            <AnimatedButton variant="secondary" className="bg-white text-primary-600 hover:bg-white/90">
+            <AnimatedButton variant="secondary" className="bg-white dark:bg-slate-800 text-primary-600 hover:bg-white dark:bg-slate-800/90" onClick={openLeadModal}>
               Schedule a Consultation
             </AnimatedButton>
           </motion.div>

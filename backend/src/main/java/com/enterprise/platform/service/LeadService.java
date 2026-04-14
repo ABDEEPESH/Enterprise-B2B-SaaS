@@ -120,8 +120,8 @@ public class LeadService {
      */
     @Transactional(readOnly = true)
     public Page<LeadResponse> getLeadsByStatus(Lead.LeadStatus status, Pageable pageable) {
-        return leadRepository.findByStatus(status, pageable)
-                .map(this::convertToLeadResponse);
+        List<Lead> leads = leadRepository.findByStatus(status);
+        return convertToLeadResponsePage(leads, pageable);
     }
 
     /**
@@ -133,8 +133,8 @@ public class LeadService {
      */
     @Transactional(readOnly = true)
     public Page<LeadResponse> getLeadsByPriority(Lead.LeadPriority priority, Pageable pageable) {
-        return leadRepository.findByPriority(priority, pageable)
-                .map(this::convertToLeadResponse);
+        List<Lead> leads = leadRepository.findByPriority(priority);
+        return convertToLeadResponsePage(leads, pageable);
     }
 
     /**
@@ -146,8 +146,8 @@ public class LeadService {
      */
     @Transactional(readOnly = true)
     public Page<LeadResponse> getLeadsByIndustry(String industry, Pageable pageable) {
-        return leadRepository.findByIndustry(industry, pageable)
-                .map(this::convertToLeadResponse);
+        List<Lead> leads = leadRepository.findByIndustry(industry);
+        return convertToLeadResponsePage(leads, pageable);
     }
 
     /**
