@@ -4,6 +4,7 @@ import { X, Mail, User, Building, MessageSquare, CheckCircle } from 'lucide-reac
 import { useModal } from '../context/ModalContext'
 import leadService from '../services/LeadService'
 import AnimatedButton from './AnimatedButton'
+import type { AxiosError } from 'axios'
 
 interface FormData {
   firstName: string
@@ -97,7 +98,7 @@ const LeadCaptureModal: React.FC = () => {
         email: formData.email,
         company_name: formData.companyName,
         message: formData.message,
-        source: 'Website Modal'
+        source: 'website'
       })
       
       setIsSubmitted(true)
@@ -111,7 +112,24 @@ const LeadCaptureModal: React.FC = () => {
       
     } catch (error) {
       console.error('Failed to submit lead:', error)
-      setErrors({ message: 'Failed to submit. Please try again.' })
+      const axiosError = error as AxiosError<{ message?: string; validationErrors?: Record<string, string[]> }>
+      
+      // Extract specific error message from backend
+      let errorMessage = 'Failed to submit. Please try again.'
+      
+      if (axiosError.response?.data) {
+        const { data } = axiosError.response
+        
+        // Handle validation errors
+        if (data.validationErrors) {
+          const validationMessages = Object.values(data.validationErrors).flat().join(', ')
+          errorMessage = `Validation Error: ${validationMessages}`
+        } else if (data.message) {
+          errorMessage = data.message
+        }
+      }
+      
+      setErrors({ message: errorMessage })
     } finally {
       setIsLoading(false)
     }

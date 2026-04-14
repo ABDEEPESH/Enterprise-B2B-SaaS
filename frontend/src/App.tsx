@@ -12,6 +12,7 @@ import Pricing from './pages/Pricing'
 import Contact from './pages/Contact'
 
 // Service Pages
+import Services from './pages/services/Services'
 import Strategy from './pages/services/Strategy'
 import Design from './pages/services/Design'
 import Development from './pages/services/Development'
@@ -19,6 +20,7 @@ import Cloud from './pages/services/Cloud'
 import Security from './pages/services/Security'
 
 // Industry Pages
+import Industries from './pages/industries/Industries'
 import FinTech from './pages/industries/FinTech'
 import HealthTech from './pages/industries/HealthTech'
 import Ecommerce from './pages/industries/Ecommerce'
@@ -51,6 +53,7 @@ function App() {
               <Route path="contact" element={<Contact />} />
               
               {/* Service Pages */}
+              <Route path="services" element={<Services />} />
               <Route path="services/strategy" element={<Strategy />} />
               <Route path="services/design" element={<Design />} />
               <Route path="services/development" element={<Development />} />
@@ -58,6 +61,7 @@ function App() {
               <Route path="services/security" element={<Security />} />
               
               {/* Industry Pages */}
+              <Route path="industries" element={<Industries />} />
               <Route path="industries/fintech" element={<FinTech />} />
               <Route path="industries/healthtech" element={<HealthTech />} />
               <Route path="industries/ecommerce" element={<Ecommerce />} />
