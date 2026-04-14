@@ -1,0 +1,180 @@
+# Enterprise B2B SaaS Platform - Backend Configuration
+# Spring Boot 3.x with MongoDB and Spring Security
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+  http2:
+    enabled: true
+
+spring:
+  application:
+    name: enterprise-b2b-saas-platform
+  
+  # MongoDB Configuration
+  data:
+    mongodb:
+      # Update this URI with your MongoDB connection string
+      uri: mongodb://localhost:27017/enterprise_b2b_platform
+      database: enterprise_b2b_platform
+      # For production with authentication:
+      # uri: mongodb://username:password@cluster-host:27017/enterprise_b2b_platform?authSource=admin&ssl=true&replicaSet=rs0
+      
+  # Jackson JSON Configuration
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+    deserialization:
+      fail-on-unknown-properties: false
+    time-zone: UTC
+    date-format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+
+  # Validation Configuration
+  validation:
+    fail-fast: true
+
+# Management and Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: when_authorized
+      show-components: always
+    info:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    com.enterprise.platform: INFO
+    org.springframework.security: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    org.mongodb.driver: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/enterprise-platform.log
+    max-size: 100MB
+    max-history: 30
+
+# Application-specific Configuration
+app:
+  security:
+    jwt:
+      # JWT Configuration (for future implementation)
+      secret: ${JWT_SECRET:your-super-secret-jwt-key-change-in-production}
+      expiration: 86400000 # 24 hours in milliseconds
+      refresh-expiration: 604800000 # 7 days in milliseconds
+    
+  cors:
+    # CORS Configuration
+    allowed-origins: 
+      - "https://your-vercel-domain.vercel.app"
+      - "https://localhost:3000"
+      - "https://localhost:5173"
+      - "http://localhost:3000"
+      - "http://localhost:5173"
+    allowed-methods:
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "PATCH"
+      - "DELETE"
+      - "OPTIONS"
+    allowed-headers:
+      - "Authorization"
+      - "Content-Type"
+      - "X-Requested-With"
+      - "Accept"
+      - "Origin"
+    allow-credentials: true
+    max-age: 3600
+
+  # Email Configuration (for future notification system)
+  email:
+    enabled: false
+    smtp:
+      host: ${SMTP_HOST:smtp.gmail.com}
+      port: ${SMTP_PORT:587}
+      username: ${SMTP_USERNAME:your-email@gmail.com}
+      password: ${SMTP_PASSWORD:your-app-password}
+      auth: true
+      starttls: true
+    from: ${EMAIL_FROM:noreply@yourcompany.com}
+    from-name: ${EMAIL_FROM_NAME:Enterprise Platform}
+
+---
+# Development Profile Configuration
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+  # Development MongoDB
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/enterprise_b2b_platform_dev
+
+logging:
+  level:
+    com.enterprise.platform: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+
+---
+# Production Profile Configuration
+spring:
+  config:
+    activate:
+      on-profile: prod
+  
+  # Production MongoDB - update with your production connection string
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://username:password@cluster-host:27017/enterprise_b2b_platform_prod?authSource=admin&ssl=true&replicaSet=rs0}
+
+logging:
+  level:
+    com.enterprise.platform: INFO
+    org.springframework.security: WARN
+    org.springframework.web: WARN
+  file:
+    name: /var/log/enterprise-platform/application.log
+
+---
+# Test Profile Configuration
+spring:
+  config:
+    activate:
+      on-profile: test
+  
+  # Test Database (Embedded MongoDB)
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/enterprise_b2b_platform_test
+
+logging:
+  level:
+    com.enterprise.platform: DEBUG
