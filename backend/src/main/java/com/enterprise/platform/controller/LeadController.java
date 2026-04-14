@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.lang.NonNull;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -46,7 +47,7 @@ public class LeadController {
      * @param leadService The lead service for business logic operations
      */
     @Autowired
-    public LeadController(LeadService leadService) {
+    public LeadController(@NonNull LeadService leadService) {
         this.leadService = leadService;
     }
 
@@ -76,7 +77,7 @@ public class LeadController {
         )
     })
     @PostMapping
-    public ResponseEntity<LeadResponse> createLead(@Valid @RequestBody LeadCreateRequest leadRequest) {
+    public ResponseEntity<LeadResponse> createLead(@Valid @NonNull @RequestBody LeadCreateRequest leadRequest) {
         LeadResponse createdLead = leadService.createLead(leadRequest);
         return new ResponseEntity<>(createdLead, HttpStatus.CREATED);
     }
@@ -104,8 +105,8 @@ public class LeadController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<LeadResponse> getLeadById(
-            @Parameter(description = "Lead unique identifier") 
-            @PathVariable String id) {
+            @Parameter(description = "Lead unique identifier")
+            @NonNull @PathVariable String id) {
         LeadResponse lead = leadService.getLeadById(id);
         return ResponseEntity.ok(lead);
     }
@@ -166,15 +167,15 @@ public class LeadController {
     )
     @GetMapping("/status/{status}")
     public ResponseEntity<Page<LeadResponse>> getLeadsByStatus(
-            @Parameter(description = "Lead status") 
-            @PathVariable Lead.LeadStatus status,
-            
-            @Parameter(description = "Page number (0-based)") 
+            @Parameter(description = "Lead status")
+            @NonNull @PathVariable Lead.LeadStatus status,
+
+            @Parameter(description = "Page number (0-based)")
             @RequestParam(defaultValue = "0") int page,
-            
-            @Parameter(description = "Number of items per page") 
+
+            @Parameter(description = "Number of items per page")
             @RequestParam(defaultValue = "20") int size) {
-        
+
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
         Page<LeadResponse> leads = leadService.getLeadsByStatus(status, pageable);
         return ResponseEntity.ok(leads);
@@ -194,15 +195,15 @@ public class LeadController {
     )
     @GetMapping("/priority/{priority}")
     public ResponseEntity<Page<LeadResponse>> getLeadsByPriority(
-            @Parameter(description = "Lead priority level") 
-            @PathVariable Lead.LeadPriority priority,
-            
-            @Parameter(description = "Page number (0-based)") 
+            @Parameter(description = "Lead priority level")
+            @NonNull @PathVariable Lead.LeadPriority priority,
+
+            @Parameter(description = "Page number (0-based)")
             @RequestParam(defaultValue = "0") int page,
-            
-            @Parameter(description = "Number of items per page") 
+
+            @Parameter(description = "Number of items per page")
             @RequestParam(defaultValue = "20") int size) {
-        
+
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
         Page<LeadResponse> leads = leadService.getLeadsByPriority(priority, pageable);
         return ResponseEntity.ok(leads);
@@ -222,15 +223,15 @@ public class LeadController {
     )
     @GetMapping("/industry/{industry}")
     public ResponseEntity<Page<LeadResponse>> getLeadsByIndustry(
-            @Parameter(description = "Industry sector") 
-            @PathVariable String industry,
-            
-            @Parameter(description = "Page number (0-based)") 
+            @Parameter(description = "Industry sector")
+            @NonNull @PathVariable String industry,
+
+            @Parameter(description = "Page number (0-based)")
             @RequestParam(defaultValue = "0") int page,
-            
-            @Parameter(description = "Number of items per page") 
+
+            @Parameter(description = "Number of items per page")
             @RequestParam(defaultValue = "20") int size) {
-        
+
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
         Page<LeadResponse> leads = leadService.getLeadsByIndustry(industry, pageable);
         return ResponseEntity.ok(leads);
@@ -250,15 +251,15 @@ public class LeadController {
     )
     @GetMapping("/search")
     public ResponseEntity<Page<LeadResponse>> searchLeads(
-            @Parameter(description = "Search term for company or contact name") 
-            @RequestParam String searchTerm,
-            
-            @Parameter(description = "Page number (0-based)") 
+            @Parameter(description = "Search term for company or contact name")
+            @NonNull @RequestParam String searchTerm,
+
+            @Parameter(description = "Page number (0-based)")
             @RequestParam(defaultValue = "0") int page,
-            
-            @Parameter(description = "Number of items per page") 
+
+            @Parameter(description = "Number of items per page")
             @RequestParam(defaultValue = "20") int size) {
-        
+
         Pageable pageable = PageRequest.of(page, size);
         Page<LeadResponse> leads = leadService.searchLeads(searchTerm, pageable);
         return ResponseEntity.ok(leads);
@@ -277,12 +278,12 @@ public class LeadController {
     )
     @PatchMapping("/{id}/status")
     public ResponseEntity<LeadResponse> updateLeadStatus(
-            @Parameter(description = "Lead unique identifier") 
-            @PathVariable String id,
-            
-            @Parameter(description = "New lead status") 
-            @RequestParam Lead.LeadStatus status) {
-        
+            @Parameter(description = "Lead unique identifier")
+            @NonNull @PathVariable String id,
+
+            @Parameter(description = "New lead status")
+            @NonNull @RequestParam Lead.LeadStatus status) {
+
         LeadResponse updatedLead = leadService.updateLeadStatus(id, status);
         return ResponseEntity.ok(updatedLead);
     }
@@ -300,12 +301,12 @@ public class LeadController {
     )
     @PatchMapping("/{id}/assign")
     public ResponseEntity<LeadResponse> assignLead(
-            @Parameter(description = "Lead unique identifier") 
-            @PathVariable String id,
-            
-            @Parameter(description = "User ID of the assignee") 
-            @RequestParam String assignedTo) {
-        
+            @Parameter(description = "Lead unique identifier")
+            @NonNull @PathVariable String id,
+
+            @Parameter(description = "User ID of the assignee")
+            @NonNull @RequestParam String assignedTo) {
+
         LeadResponse updatedLead = leadService.assignLead(id, assignedTo);
         return ResponseEntity.ok(updatedLead);
     }
@@ -323,12 +324,12 @@ public class LeadController {
     )
     @PatchMapping("/{id}/priority")
     public ResponseEntity<LeadResponse> updateLeadPriority(
-            @Parameter(description = "Lead unique identifier") 
-            @PathVariable String id,
-            
-            @Parameter(description = "New priority level") 
-            @RequestParam Lead.LeadPriority priority) {
-        
+            @Parameter(description = "Lead unique identifier")
+            @NonNull @PathVariable String id,
+
+            @Parameter(description = "New priority level")
+            @NonNull @RequestParam Lead.LeadPriority priority) {
+
         LeadResponse updatedLead = leadService.updateLeadPriority(id, priority);
         return ResponseEntity.ok(updatedLead);
     }
@@ -349,9 +350,9 @@ public class LeadController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteLead(
-            @Parameter(description = "Lead unique identifier") 
-            @PathVariable String id) {
-        
+            @Parameter(description = "Lead unique identifier")
+            @NonNull @PathVariable String id) {
+
         leadService.deleteLead(id);
         return ResponseEntity.noContent().build();
     }

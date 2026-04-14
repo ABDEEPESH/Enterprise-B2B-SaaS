@@ -2,6 +2,7 @@ package com.enterprise.platform.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -187,9 +188,9 @@ public class SecurityConfig {
         
         @Override
         protected void doFilterInternal(
-                jakarta.servlet.http.HttpServletRequest request,
-                jakarta.servlet.http.HttpServletResponse response,
-                jakarta.servlet.FilterChain filterChain) 
+                @NonNull jakarta.servlet.http.HttpServletRequest request,
+                @NonNull jakarta.servlet.http.HttpServletResponse response,
+                @NonNull jakarta.servlet.FilterChain filterChain) 
                 throws jakarta.servlet.ServletException, java.io.IOException {
             
             // JWT validation logic will be implemented here

@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.lang.NonNull;
+
+import java.util.Objects;
 
 /**
  * MongoDB configuration for the enterprise B2B SaaS platform.
@@ -37,8 +40,10 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
      */
     @Override
     @Bean
+    @NonNull
+    @SuppressWarnings("null")
     public MongoClient mongoClient() {
-        return MongoClients.create(mongoUri);
+        return Objects.requireNonNull(MongoClients.create(mongoUri), "MongoClient cannot be null");
     }
 
     /**
@@ -47,8 +52,10 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
      * @return Database name
      */
     @Override
+    @NonNull
+    @SuppressWarnings("null")
     protected String getDatabaseName() {
-        return databaseName;
+        return Objects.requireNonNull(databaseName, "Database name cannot be null");
     }
 
     /**
@@ -58,7 +65,12 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
      * @return MongoTemplate instance for database operations
      */
     @Bean
-    public MongoTemplate mongoTemplate(MongoClient mongoClient) {
-        return new MongoTemplate(mongoClient, getDatabaseName());
+    @NonNull
+    @SuppressWarnings("null")
+    public MongoTemplate mongoTemplate(@NonNull MongoClient mongoClient) {
+        return new MongoTemplate(
+            Objects.requireNonNull(mongoClient, "MongoClient cannot be null"),
+            Objects.requireNonNull(getDatabaseName(), "Database name cannot be null")
+        );
     }
 }

@@ -15,14 +15,20 @@ spring:
   application:
     name: enterprise-b2b-saas-platform
   
-  # MongoDB Configuration
+  # MongoDB Configuration - Uses environment variable for security
+  # Set SPRING_DATA_MONGODB_URI in your .env file or environment
+  # Example: mongodb+srv://username:password@cluster.mongodb.net/enterprise_b2b_platform?retryWrites=true&w=majority
   data:
     mongodb:
-      # Update this URI with your MongoDB connection string
-      uri: mongodb://localhost:27017/enterprise_b2b_platform
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/enterprise_b2b_platform}
       database: enterprise_b2b_platform
-      # For production with authentication:
-      # uri: mongodb://username:password@cluster-host:27017/enterprise_b2b_platform?authSource=admin&ssl=true&replicaSet=rs0
+      auto-index-creation: true
+      # Connection pool settings for production
+      connection-pool:
+        min-size: 5
+        max-size: 20
+        max-wait-time: 2000
+        max-connection-lifetime: 0
       
   # Jackson JSON Configuration
   jackson:
@@ -132,10 +138,10 @@ spring:
     activate:
       on-profile: dev
   
-  # Development MongoDB
+  # Development MongoDB - uses env var or defaults to local
   data:
     mongodb:
-      uri: mongodb://localhost:27017/enterprise_b2b_platform_dev
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/enterprise_b2b_platform_dev}
 
 logging:
   level:

@@ -8,11 +8,13 @@ import com.enterprise.platform.exception.LeadNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -50,7 +52,8 @@ public class LeadService {
      * @return LeadResponse containing the created lead information
      * @throws DuplicateLeadException if a lead with the same email already exists
      */
-    public LeadResponse createLead(LeadCreateRequest request) {
+    @SuppressWarnings("null")
+    public LeadResponse createLead(@NonNull LeadCreateRequest request) {
         // Check for duplicate email
         Optional<Lead> existingLead = leadRepository.findByEmail(request.getEmail());
         if (existingLead.isPresent()) {
@@ -79,7 +82,7 @@ public class LeadService {
         lead.setPriority(determineLeadPriority(request));
 
         // Save the lead
-        Lead savedLead = leadRepository.save(lead);
+        Lead savedLead = Objects.requireNonNull(leadRepository.save(lead), "Saved lead cannot be null");
 
         // Convert to response DTO
         return convertToLeadResponse(savedLead);
@@ -93,9 +96,13 @@ public class LeadService {
      * @throws LeadNotFoundException if no lead with the given ID is found
      */
     @Transactional(readOnly = true)
-    public LeadResponse getLeadById(String id) {
-        Lead lead = leadRepository.findById(id)
-                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found"));
+    @SuppressWarnings("null")
+    public LeadResponse getLeadById(@NonNull String id) {
+        Lead lead = Objects.requireNonNull(
+            leadRepository.findById(id)
+                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found")),
+            "Lead cannot be null"
+        );
         return convertToLeadResponse(lead);
     }
 
@@ -106,9 +113,13 @@ public class LeadService {
      * @return Page of LeadResponse objects
      */
     @Transactional(readOnly = true)
-    public Page<LeadResponse> getAllLeads(Pageable pageable) {
-        return leadRepository.findAll(pageable)
-                .map(this::convertToLeadResponse);
+    @SuppressWarnings("null")
+    public Page<LeadResponse> getAllLeads(@NonNull Pageable pageable) {
+        return Objects.requireNonNull(
+            leadRepository.findAll(pageable)
+                .map(this::convertToLeadResponse),
+            "Page result cannot be null"
+        );
     }
 
     /**
@@ -119,8 +130,9 @@ public class LeadService {
      * @return Page of LeadResponse objects with the specified status
      */
     @Transactional(readOnly = true)
-    public Page<LeadResponse> getLeadsByStatus(Lead.LeadStatus status, Pageable pageable) {
-        List<Lead> leads = leadRepository.findByStatus(status);
+    @SuppressWarnings("null")
+    public Page<LeadResponse> getLeadsByStatus(@NonNull Lead.LeadStatus status, @NonNull Pageable pageable) {
+        List<Lead> leads = Objects.requireNonNull(leadRepository.findByStatus(status), "Leads list cannot be null");
         return convertToLeadResponsePage(leads, pageable);
     }
 
@@ -132,8 +144,9 @@ public class LeadService {
      * @return Page of LeadResponse objects with the specified priority
      */
     @Transactional(readOnly = true)
-    public Page<LeadResponse> getLeadsByPriority(Lead.LeadPriority priority, Pageable pageable) {
-        List<Lead> leads = leadRepository.findByPriority(priority);
+    @SuppressWarnings("null")
+    public Page<LeadResponse> getLeadsByPriority(@NonNull Lead.LeadPriority priority, @NonNull Pageable pageable) {
+        List<Lead> leads = Objects.requireNonNull(leadRepository.findByPriority(priority), "Leads list cannot be null");
         return convertToLeadResponsePage(leads, pageable);
     }
 
@@ -145,8 +158,9 @@ public class LeadService {
      * @return Page of LeadResponse objects from the specified industry
      */
     @Transactional(readOnly = true)
-    public Page<LeadResponse> getLeadsByIndustry(String industry, Pageable pageable) {
-        List<Lead> leads = leadRepository.findByIndustry(industry);
+    @SuppressWarnings("null")
+    public Page<LeadResponse> getLeadsByIndustry(@NonNull String industry, @NonNull Pageable pageable) {
+        List<Lead> leads = Objects.requireNonNull(leadRepository.findByIndustry(industry), "Leads list cannot be null");
         return convertToLeadResponsePage(leads, pageable);
     }
 
@@ -158,8 +172,12 @@ public class LeadService {
      * @return Page of LeadResponse objects matching the search criteria
      */
     @Transactional(readOnly = true)
-    public Page<LeadResponse> searchLeads(String searchTerm, Pageable pageable) {
-        List<Lead> searchResults = leadRepository.searchByCompanyOrContactName(searchTerm);
+    @SuppressWarnings("null")
+    public Page<LeadResponse> searchLeads(@NonNull String searchTerm, @NonNull Pageable pageable) {
+        List<Lead> searchResults = Objects.requireNonNull(
+            leadRepository.searchByCompanyOrContactName(searchTerm),
+            "Search results cannot be null"
+        );
         return convertToLeadResponsePage(searchResults, pageable);
     }
 
@@ -171,14 +189,18 @@ public class LeadService {
      * @return LeadResponse containing the updated lead information
      * @throws LeadNotFoundException if no lead with the given ID is found
      */
-    public LeadResponse updateLeadStatus(String id, Lead.LeadStatus status) {
-        Lead lead = leadRepository.findById(id)
-                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found"));
-        
+    @SuppressWarnings("null")
+    public LeadResponse updateLeadStatus(@NonNull String id, Lead.LeadStatus status) {
+        Lead lead = Objects.requireNonNull(
+            leadRepository.findById(id)
+                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found")),
+            "Lead cannot be null"
+        );
+
         lead.setStatus(status);
         lead.setUpdatedAt(LocalDateTime.now());
-        
-        Lead updatedLead = leadRepository.save(lead);
+
+        Lead updatedLead = Objects.requireNonNull(leadRepository.save(lead), "Updated lead cannot be null");
         return convertToLeadResponse(updatedLead);
     }
 
@@ -190,14 +212,18 @@ public class LeadService {
      * @return LeadResponse containing the updated lead information
      * @throws LeadNotFoundException if no lead with the given ID is found
      */
-    public LeadResponse assignLead(String id, String assignedTo) {
-        Lead lead = leadRepository.findById(id)
-                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found"));
-        
+    @SuppressWarnings("null")
+    public LeadResponse assignLead(@NonNull String id, String assignedTo) {
+        Lead lead = Objects.requireNonNull(
+            leadRepository.findById(id)
+                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found")),
+            "Lead cannot be null"
+        );
+
         lead.setAssignedTo(assignedTo);
         lead.setUpdatedAt(LocalDateTime.now());
-        
-        Lead updatedLead = leadRepository.save(lead);
+
+        Lead updatedLead = Objects.requireNonNull(leadRepository.save(lead), "Updated lead cannot be null");
         return convertToLeadResponse(updatedLead);
     }
 
@@ -209,14 +235,18 @@ public class LeadService {
      * @return LeadResponse containing the updated lead information
      * @throws LeadNotFoundException if no lead with the given ID is found
      */
-    public LeadResponse updateLeadPriority(String id, Lead.LeadPriority priority) {
-        Lead lead = leadRepository.findById(id)
-                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found"));
-        
+    @SuppressWarnings("null")
+    public LeadResponse updateLeadPriority(@NonNull String id, Lead.LeadPriority priority) {
+        Lead lead = Objects.requireNonNull(
+            leadRepository.findById(id)
+                .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found")),
+            "Lead cannot be null"
+        );
+
         lead.setPriority(priority);
         lead.setUpdatedAt(LocalDateTime.now());
-        
-        Lead updatedLead = leadRepository.save(lead);
+
+        Lead updatedLead = Objects.requireNonNull(leadRepository.save(lead), "Updated lead cannot be null");
         return convertToLeadResponse(updatedLead);
     }
 
@@ -226,7 +256,7 @@ public class LeadService {
      * @param id The lead ID to delete
      * @throws LeadNotFoundException if no lead with the given ID is found
      */
-    public void deleteLead(String id) {
+    public void deleteLead(@NonNull String id) {
         if (!leadRepository.existsById(id)) {
             throw new LeadNotFoundException("Lead with ID " + id + " not found");
         }
@@ -288,7 +318,7 @@ public class LeadService {
      * @param lead The lead entity to convert
      * @return LeadResponse DTO
      */
-    private LeadResponse convertToLeadResponse(Lead lead) {
+    private LeadResponse convertToLeadResponse(@NonNull Lead lead) {
         LeadResponse response = new LeadResponse();
         response.setId(lead.getId());
         response.setFirstName(lead.getFirstName());
@@ -321,12 +351,17 @@ public class LeadService {
      * @param pageable Pagination information
      * @return Page of LeadResponse objects
      */
-    private Page<LeadResponse> convertToLeadResponsePage(List<Lead> leads, Pageable pageable) {
+    @SuppressWarnings("null")
+    private Page<LeadResponse> convertToLeadResponsePage(@NonNull List<Lead> leads, @NonNull Pageable pageable) {
         List<LeadResponse> responses = leads.stream()
                 .map(this::convertToLeadResponse)
                 .collect(Collectors.toList());
-        
-        return new org.springframework.data.domain.PageImpl<>(responses, pageable, leads.size());
+
+        return new org.springframework.data.domain.PageImpl<>(
+            Objects.requireNonNull(responses, "Responses list cannot be null"),
+            Objects.requireNonNull(pageable, "Pageable cannot be null"),
+            leads.size()
+        );
     }
 
     /**
