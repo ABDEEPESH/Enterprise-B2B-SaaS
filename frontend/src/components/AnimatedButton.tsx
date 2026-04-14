@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, forwardRef } from 'react'
 import { cn } from '../utils/cn'
 
 interface AnimatedButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'gradient' | 'white' | 'outline-white'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   loading?: boolean
   glowEffect?: boolean
@@ -19,7 +19,9 @@ const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>(
       secondary: 'bg-secondary-100 hover:bg-secondary-200 text-secondary-900 shadow-sm hover:shadow-md focus:ring-secondary-500 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-white dark:shadow-md dark:shadow-slate-900/50',
       outline: 'border border-primary-600 text-primary-600 hover:bg-primary-50 hover:border-primary-700 focus:ring-primary-500 dark:border-primary-500 dark:text-primary-400 dark:hover:bg-primary-900/20 dark:hover:border-primary-400',
       ghost: 'text-secondary-600 hover:text-secondary-900 hover:bg-secondary-100 focus:ring-secondary-500 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800',
-      gradient: 'bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-md hover:shadow-lg focus:ring-primary-500 dark:from-primary-500 dark:to-accent-500'
+      gradient: 'bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-md hover:shadow-lg focus:ring-primary-500 dark:from-primary-500 dark:to-accent-500',
+      white: 'bg-white hover:bg-gray-100 text-secondary-900 shadow-md hover:shadow-lg focus:ring-white dark:bg-white dark:hover:bg-gray-100',
+      'outline-white': 'border-2 border-white text-white hover:bg-white/10 focus:ring-white dark:border-white dark:text-white dark:hover:bg-white/10'
     }
     
     const sizes = {
