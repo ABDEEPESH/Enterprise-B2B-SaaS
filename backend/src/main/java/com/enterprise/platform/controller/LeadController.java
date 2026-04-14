@@ -12,6 +12,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.NonNull;
@@ -38,6 +40,8 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Lead Management", description = "API endpoints for managing B2B sales leads")
 @CrossOrigin(origins = {"https://your-vercel-domain.vercel.app", "http://localhost:3000", "http://localhost:5173"})
 public class LeadController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LeadController.class);
 
     private final LeadService leadService;
 
@@ -78,7 +82,9 @@ public class LeadController {
     })
     @PostMapping
     public ResponseEntity<LeadResponse> createLead(@Valid @NonNull @RequestBody LeadCreateRequest leadRequest) {
+        logger.info("✅ RECEIVED POST REQUEST /api/v1/leads - Email: {}", leadRequest.getEmail());
         LeadResponse createdLead = leadService.createLead(leadRequest);
+        logger.info("✅ Lead created successfully - ID: {}, Email: {}", createdLead.getId(), createdLead.getEmail());
         return new ResponseEntity<>(createdLead, HttpStatus.CREATED);
     }
 
