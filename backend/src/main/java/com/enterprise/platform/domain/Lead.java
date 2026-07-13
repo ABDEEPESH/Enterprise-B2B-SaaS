@@ -78,6 +78,9 @@ public class Lead {
     @Field("tags")
     private String tags;
     
+    @Field("tenant_id")
+    private String tenantId;
+    
     @CreatedDate
     @Field("created_at")
     private LocalDateTime createdAt;
@@ -256,6 +259,14 @@ public class Lead {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     public LocalDateTime getCreatedAt() {

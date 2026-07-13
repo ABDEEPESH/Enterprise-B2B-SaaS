@@ -1,230 +1,63 @@
-2026-04-14 16:20:20.379 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 2332 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 16:20:20.380 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 16:20:21.033 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 16:20:21.063 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 1 MongoDB repository interface.
-2026-04-14 16:20:21.823 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-04-14 16:20:21.834 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 16:20:21.834 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 16:20:21.882 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 16:20:21.882 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1442 ms
-2026-04-14 16:20:22.607 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+2026-04-28 14:13:21.380 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 8492 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
+2026-04-28 14:13:21.600 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-28 14:13:24.016 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2026-04-28 14:13:24.077 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 54 ms. Found 1 MongoDB repository interface.
+2026-04-28 14:13:25.791 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-04-28 14:13:25.818 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-28 14:13:25.819 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
+2026-04-28 14:13:25.944 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-28 14:13:25.945 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4224 ms
+2026-04-28 14:13:26.311 [main] INFO  c.e.platform.config.MongoConfig - ╔════════════════════════════════════════════════════════════╗
+2026-04-28 14:13:26.314 [main] INFO  c.e.platform.config.MongoConfig - ║          MongoDB Configuration Check                        ║
+2026-04-28 14:13:26.314 [main] INFO  c.e.platform.config.MongoConfig - ╠════════════════════════════════════════════════════════════╣
+2026-04-28 14:13:26.314 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/enterprise_b2b_platform              ║
+2026-04-28 14:13:26.320 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ Database: enterprise_b2b_platform                                                ║
+2026-04-28 14:13:26.321 [main] INFO  c.e.platform.config.MongoConfig - ╚════════════════════════════════════════════════════════════╝
+2026-04-28 14:13:26.328 [main] INFO  c.e.platform.config.MongoConfig - Creating MongoDB client...
+2026-04-28 14:13:57.208 [main] ERROR c.e.p.config.MongoConnectionLogger - ╔════════════════════════════════════════════════════════════╗
+2026-04-28 14:13:57.209 [main] ERROR c.e.p.config.MongoConnectionLogger - ║          ❌ MONGODB CONNECTION FAILED                       ║
+2026-04-28 14:13:57.209 [main] ERROR c.e.p.config.MongoConnectionLogger - ╠════════════════════════════════════════════════════════════╣
+2026-04-28 14:13:57.210 [main] ERROR c.e.p.config.MongoConnectionLogger - ║  Error: Timed out after 30000 ms while waiting for a ║
+2026-04-28 14:13:57.211 [main] ERROR c.e.p.config.MongoConnectionLogger - ╚════════════════════════════════════════════════════════════╝
+2026-04-28 14:13:57.211 [main] ERROR c.e.p.config.MongoConnectionLogger - Please check your SPRING_DATA_MONGODB_URI environment variable
+2026-04-28 14:13:57.935 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
 
-Using generated security password: f4545a11-3635-4cd1-a1e7-c8b395cb479e
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-14 16:20:22.891 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 16:20:22.927 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70aa58e1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@154f8280, org.springframework.security.web.context.SecurityContextHolderFilter@5814b4fb, org.springframework.security.web.header.HeaderWriterFilter@6cb194f5, org.springframework.web.filter.CorsFilter@24f90aff, org.springframework.security.web.authentication.logout.LogoutFilter@16d4024e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ba13fed, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@651cedfb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7252bdb, org.springframework.security.web.session.SessionManagementFilter@2e8986b6, org.springframework.security.web.access.ExceptionTranslationFilter@4ff9f715, org.springframework.security.web.access.intercept.AuthorizationFilter@4f2544b0]
-2026-04-14 16:20:23.203 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
-2026-04-14 16:20:23.213 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 3.23 seconds (process running for 3.515)
-2026-04-14 16:26:16.796 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 16368 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 16:26:16.797 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 16:26:17.373 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 16:26:17.402 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 27 ms. Found 1 MongoDB repository interface.
-2026-04-14 16:26:18.141 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2026-04-14 16:26:18.149 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 16:26:18.149 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 16:26:18.199 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 16:26:18.199 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1352 ms
-2026-04-14 16:26:18.918 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: 34f7e736-f4d6-4fc2-9b4a-183cbe58c348
+Using generated security password: 749a7e21-c121-4a45-9a05-1ee461eabdc9
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2026-04-14 16:26:19.205 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 16:26:19.246 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7252bdb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25ea068e, org.springframework.security.web.context.SecurityContextHolderFilter@651cedfb, org.springframework.security.web.header.HeaderWriterFilter@308c65e0, org.springframework.web.filter.CorsFilter@4cd8db31, org.springframework.security.web.authentication.logout.LogoutFilter@3a1a0bc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73d83141, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31443680, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@201a8ea7, org.springframework.security.web.session.SessionManagementFilter@5814b4fb, org.springframework.security.web.access.ExceptionTranslationFilter@74b7497b, org.springframework.security.web.access.intercept.AuthorizationFilter@70aa58e1]
-2026-04-14 16:26:19.530 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
-2026-04-14 16:26:19.541 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 3.14 seconds (process running for 3.42)
-2026-04-14 18:20:06.808 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 20204 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 18:20:06.831 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 18:20:07.500 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 18:20:07.535 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 31 ms. Found 1 MongoDB repository interface.
-2026-04-14 18:20:08.342 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2026-04-14 18:20:08.353 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 18:20:08.353 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 18:20:08.431 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 18:20:08.432 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1546 ms
-2026-04-14 18:20:38.930 [main] ERROR c.e.p.config.MongoConnectionLogger - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 18:20:38.933 [main] ERROR c.e.p.config.MongoConnectionLogger - ║          ❌ MONGODB CONNECTION FAILED                       ║
-2026-04-14 18:20:38.933 [main] ERROR c.e.p.config.MongoConnectionLogger - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 18:20:38.934 [main] ERROR c.e.p.config.MongoConnectionLogger - ║  Error: Timed out after 30000 ms while waiting for a ║
-2026-04-14 18:20:38.935 [main] ERROR c.e.p.config.MongoConnectionLogger - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 18:20:38.935 [main] ERROR c.e.p.config.MongoConnectionLogger - Please check your SPRING_DATA_MONGODB_URI environment variable
-2026-04-14 18:20:39.535 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: b4848497-2f21-4915-b636-ad269096f26b
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-14 18:20:39.982 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 18:20:40.032 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@54b2d002, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1d1c63af, org.springframework.security.web.context.SecurityContextHolderFilter@4f7ae05, org.springframework.security.web.header.HeaderWriterFilter@73ae82da, org.springframework.web.filter.CorsFilter@2095c331, org.springframework.security.web.authentication.logout.LogoutFilter@2210e466, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@b144175, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@38923cfe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3909a854, org.springframework.security.web.session.SessionManagementFilter@687e561b, org.springframework.security.web.access.ExceptionTranslationFilter@66944c7c, org.springframework.security.web.access.intercept.AuthorizationFilter@4a5066f5]
-2026-04-14 18:20:40.418 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
-2026-04-14 18:20:40.432 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 34.112 seconds (process running for 34.524)
-2026-04-14 18:22:16.078 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-14 18:22:16.078 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-04-14 18:22:16.080 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-04-14 18:22:16.119 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776171135981
-2026-04-14 18:22:16.161 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1776171135981
-2026-04-14 18:22:16.167 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-04-14 18:22:16.173 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1776171135981
-2026-04-14 18:22:29.937 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776171149926
-2026-04-14 18:22:29.943 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1776171149926
-2026-04-14 18:22:29.946 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-04-14 18:22:29.947 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1776171149926
-2026-04-14 18:22:50.346 [http-nio-8081-exec-5] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776171170333
-2026-04-14 18:22:50.353 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1776171170333
-2026-04-14 18:22:50.355 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-04-14 18:22:50.357 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1776171170333
-2026-04-14 18:33:26.202 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 18896 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 18:33:26.204 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 18:33:26.879 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 18:33:26.907 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 1 MongoDB repository interface.
-2026-04-14 18:33:27.633 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2026-04-14 18:33:27.645 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 18:33:27.646 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 18:33:27.730 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 18:33:27.731 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1474 ms
-2026-04-14 18:33:58.165 [main] ERROR c.e.p.config.MongoConnectionLogger - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 18:33:58.167 [main] ERROR c.e.p.config.MongoConnectionLogger - ║          ❌ MONGODB CONNECTION FAILED                       ║
-2026-04-14 18:33:58.167 [main] ERROR c.e.p.config.MongoConnectionLogger - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 18:33:58.167 [main] ERROR c.e.p.config.MongoConnectionLogger - ║  Error: Timed out after 30000 ms while waiting for a ║
-2026-04-14 18:33:58.168 [main] ERROR c.e.p.config.MongoConnectionLogger - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 18:33:58.169 [main] ERROR c.e.p.config.MongoConnectionLogger - Please check your SPRING_DATA_MONGODB_URI environment variable
-2026-04-14 18:33:58.399 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: da9c1368-ebcb-49ad-8e15-8c518e16ab0d
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-14 18:33:58.647 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 18:33:58.681 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d1c63af, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2095c331, org.springframework.security.web.context.SecurityContextHolderFilter@1e23ee0e, org.springframework.security.web.header.HeaderWriterFilter@6866e740, org.springframework.web.filter.CorsFilter@3909a854, org.springframework.security.web.authentication.logout.LogoutFilter@be1c08a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@38923cfe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ac3a6f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7b795db7, org.springframework.security.web.session.SessionManagementFilter@299786b1, org.springframework.security.web.access.ExceptionTranslationFilter@14993306, org.springframework.security.web.access.intercept.AuthorizationFilter@578d472a]
-2026-04-14 18:33:58.971 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
-2026-04-14 18:33:58.981 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 33.219 seconds (process running for 33.556)
-2026-04-14 18:44:05.637 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 11876 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 18:44:05.639 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 18:44:06.299 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 18:44:06.333 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 1 MongoDB repository interface.
-2026-04-14 18:44:07.241 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2026-04-14 18:44:07.253 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 18:44:07.254 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 18:44:07.324 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 18:44:07.326 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1633 ms
-2026-04-14 18:44:07.500 [main] INFO  c.e.platform.config.MongoConfig - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 18:44:07.501 [main] INFO  c.e.platform.config.MongoConfig - ║          MongoDB Configuration Check                        ║
-2026-04-14 18:44:07.501 [main] INFO  c.e.platform.config.MongoConfig - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 18:44:07.501 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/enterprise_b2b_platform              ║
-2026-04-14 18:44:07.503 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ Database: enterprise_b2b_platform                                                ║
-2026-04-14 18:44:07.503 [main] INFO  c.e.platform.config.MongoConfig - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 18:44:07.508 [main] INFO  c.e.platform.config.MongoConfig - Creating MongoDB client...
-2026-04-14 18:44:37.846 [main] ERROR c.e.p.config.MongoConnectionLogger - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 18:44:37.846 [main] ERROR c.e.p.config.MongoConnectionLogger - ║          ❌ MONGODB CONNECTION FAILED                       ║
-2026-04-14 18:44:37.846 [main] ERROR c.e.p.config.MongoConnectionLogger - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 18:44:37.847 [main] ERROR c.e.p.config.MongoConnectionLogger - ║  Error: Timed out after 30000 ms while waiting for a ║
-2026-04-14 18:44:37.848 [main] ERROR c.e.p.config.MongoConnectionLogger - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 18:44:37.848 [main] ERROR c.e.p.config.MongoConnectionLogger - Please check your SPRING_DATA_MONGODB_URI environment variable
-2026-04-14 18:44:38.159 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: eea916ff-3906-4848-8bd4-3767dc3f502f
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-14 18:44:38.560 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 18:44:38.608 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@77a4bac, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@534fc1f7, org.springframework.security.web.context.SecurityContextHolderFilter@7f1fec57, org.springframework.security.web.header.HeaderWriterFilter@76ed7573, org.springframework.web.filter.CorsFilter@7d5a0b14, org.springframework.security.web.authentication.logout.LogoutFilter@2fa47368, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1dc9f5ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a2d66e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72ec16f8, org.springframework.security.web.session.SessionManagementFilter@22002459, org.springframework.security.web.access.ExceptionTranslationFilter@32e65852, org.springframework.security.web.access.intercept.AuthorizationFilter@2cff03cf]
-2026-04-14 18:44:38.993 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
-2026-04-14 18:44:39.008 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 33.824 seconds (process running for 34.223)
-2026-04-14 18:45:01.135 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-14 18:45:01.136 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-04-14 18:45:01.137 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-04-14 18:45:01.177 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776172501053
-2026-04-14 18:45:01.226 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1776172501053
-2026-04-14 18:45:01.231 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-04-14 18:45:01.236 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1776172501053
-2026-04-14 18:45:01.480 [http-nio-8081-exec-2] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "abdeepubhu@gmail.com"}, Fields: {}, Sort: {}
-2026-04-14 18:45:01.493 [http-nio-8081-exec-2] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "abdeepubhu@gmail.com"} fields: Document{{}} sort: { "email" : "abdeepubhu@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
-2026-04-14 18:46:13.226 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776172573217
-2026-04-14 18:46:13.234 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1776172573217
-2026-04-14 18:46:13.236 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-04-14 18:46:13.237 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1776172573217
-2026-04-14 18:46:13.239 [http-nio-8081-exec-4] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "abdeepubhu@gmail.com"}, Fields: {}, Sort: {}
-2026-04-14 18:46:13.241 [http-nio-8081-exec-4] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "abdeepubhu@gmail.com"} fields: Document{{}} sort: { "email" : "abdeepubhu@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
-2026-04-14 18:53:52.537 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 19168 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 18:53:52.539 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 18:53:53.210 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 18:53:53.242 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 1 MongoDB repository interface.
-2026-04-14 18:53:54.009 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2026-04-14 18:53:54.019 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 18:53:54.019 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 18:53:54.070 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 18:53:54.070 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1477 ms
-2026-04-14 18:53:54.251 [main] INFO  c.e.platform.config.MongoConfig - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 18:53:54.252 [main] INFO  c.e.platform.config.MongoConfig - ║          MongoDB Configuration Check                        ║
-2026-04-14 18:53:54.253 [main] INFO  c.e.platform.config.MongoConfig - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 18:53:54.253 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/enterprise_b2b_platform              ║
-2026-04-14 18:53:54.254 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ Database: enterprise_b2b_platform                                                ║
-2026-04-14 18:53:54.254 [main] INFO  c.e.platform.config.MongoConfig - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 18:53:54.259 [main] INFO  c.e.platform.config.MongoConfig - Creating MongoDB client...
-2026-04-14 18:54:24.603 [main] ERROR c.e.p.config.MongoConnectionLogger - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 18:54:24.603 [main] ERROR c.e.p.config.MongoConnectionLogger - ║          ❌ MONGODB CONNECTION FAILED                       ║
-2026-04-14 18:54:24.604 [main] ERROR c.e.p.config.MongoConnectionLogger - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 18:54:24.605 [main] ERROR c.e.p.config.MongoConnectionLogger - ║  Error: Timed out after 30000 ms while waiting for a ║
-2026-04-14 18:54:24.605 [main] ERROR c.e.p.config.MongoConnectionLogger - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 18:54:24.606 [main] ERROR c.e.p.config.MongoConnectionLogger - Please check your SPRING_DATA_MONGODB_URI environment variable
-2026-04-14 18:54:25.048 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: 77654211-708b-4591-b1d1-cf8607e0bde7
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-14 18:54:25.583 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 18:54:25.659 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d5a0b14, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72ec16f8, org.springframework.security.web.context.SecurityContextHolderFilter@1dc9f5ad, org.springframework.security.web.header.HeaderWriterFilter@517bdce0, org.springframework.web.filter.CorsFilter@279e1422, org.springframework.security.web.authentication.logout.LogoutFilter@5e9ea380, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4dffff9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2904bc56, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@af3295f, org.springframework.security.web.session.SessionManagementFilter@21e702b8, org.springframework.security.web.access.ExceptionTranslationFilter@76ed7573, org.springframework.security.web.access.intercept.AuthorizationFilter@19e2db7c]
-2026-04-14 18:54:26.177 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
-2026-04-14 18:54:26.191 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 34.045 seconds (process running for 34.355)
-2026-04-14 18:54:46.740 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-14 18:54:46.741 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-04-14 18:54:46.742 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-04-14 18:54:46.773 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776173086680
-2026-04-14 18:54:46.817 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1776173086680
-2026-04-14 18:54:46.823 [http-nio-8081-exec-2] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
-2026-04-14 18:54:46.828 [http-nio-8081-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1776173086680
-2026-04-14 18:54:46.999 [http-nio-8081-exec-2] INFO  c.e.p.controller.LeadController - ✅ RECEIVED POST REQUEST /api/v1/leads - Email: abdeepubhu@gmail.com
-2026-04-14 18:54:47.021 [http-nio-8081-exec-2] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "abdeepubhu@gmail.com"}, Fields: {}, Sort: {}
-2026-04-14 18:54:47.035 [http-nio-8081-exec-2] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "abdeepubhu@gmail.com"} fields: Document{{}} sort: { "email" : "abdeepubhu@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
-2026-04-14 19:04:03.419 [main] INFO  c.e.p.B2bSaasPlatformApplication - Starting B2bSaasPlatformApplication using Java 23.0.2 with PID 7724 (D:\enterprise-platform\backend\target\classes started by 91916 in D:\enterprise-platform)
-2026-04-14 19:04:03.420 [main] INFO  c.e.p.B2bSaasPlatformApplication - No active profile set, falling back to 1 default profile: "default"
-2026-04-14 19:04:04.042 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
-2026-04-14 19:04:04.071 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 25 ms. Found 1 MongoDB repository interface.
-2026-04-14 19:04:04.760 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
-2026-04-14 19:04:04.768 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-04-14 19:04:04.769 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.20]
-2026-04-14 19:04:04.814 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-04-14 19:04:04.814 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1346 ms
-2026-04-14 19:04:04.985 [main] INFO  c.e.platform.config.MongoConfig - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 19:04:04.985 [main] INFO  c.e.platform.config.MongoConfig - ║          MongoDB Configuration Check                        ║
-2026-04-14 19:04:04.986 [main] INFO  c.e.platform.config.MongoConfig - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 19:04:04.986 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ SPRING_DATA_MONGODB_URI: mongodb://localhost:27017/enterprise_b2b_platform              ║
-2026-04-14 19:04:04.988 [main] INFO  c.e.platform.config.MongoConfig - ║  ✅ Database: enterprise_b2b_platform                                                ║
-2026-04-14 19:04:04.989 [main] INFO  c.e.platform.config.MongoConfig - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 19:04:04.993 [main] INFO  c.e.platform.config.MongoConfig - Creating MongoDB client...
-2026-04-14 19:04:35.339 [main] ERROR c.e.p.config.MongoConnectionLogger - ╔════════════════════════════════════════════════════════════╗
-2026-04-14 19:04:35.340 [main] ERROR c.e.p.config.MongoConnectionLogger - ║          ❌ MONGODB CONNECTION FAILED                       ║
-2026-04-14 19:04:35.342 [main] ERROR c.e.p.config.MongoConnectionLogger - ╠════════════════════════════════════════════════════════════╣
-2026-04-14 19:04:35.344 [main] ERROR c.e.p.config.MongoConnectionLogger - ║  Error: Timed out after 30000 ms while waiting for a ║
-2026-04-14 19:04:35.344 [main] ERROR c.e.p.config.MongoConnectionLogger - ╚════════════════════════════════════════════════════════════╝
-2026-04-14 19:04:35.345 [main] ERROR c.e.p.config.MongoConnectionLogger - Please check your SPRING_DATA_MONGODB_URI environment variable
-2026-04-14 19:04:35.616 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: 01b99c0c-287a-4bbb-8830-949dcbb724aa
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2026-04-14 19:04:35.962 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
-2026-04-14 19:04:36.005 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2cff03cf, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@924f3f1, org.springframework.security.web.context.SecurityContextHolderFilter@22002459, org.springframework.security.web.header.HeaderWriterFilter@3749c2b, org.springframework.web.filter.CorsFilter@19e2db7c, org.springframework.security.web.authentication.logout.LogoutFilter@60a99f3d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21e702b8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7f1fec57, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77a4bac, org.springframework.security.web.session.SessionManagementFilter@672d8370, org.springframework.security.web.access.ExceptionTranslationFilter@7d156f8f, org.springframework.security.web.access.intercept.AuthorizationFilter@1ba7db2a]
-2026-04-14 19:04:36.386 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
-2026-04-14 19:04:36.402 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 33.359 seconds (process running for 33.661)
-2026-04-14 19:05:35.144 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-04-14 19:05:35.145 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-04-14 19:05:35.146 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-04-14 19:05:35.178 [http-nio-8081-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776173734848
-2026-04-14 19:08:24.648 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776173904632
-2026-04-14 19:09:36.778 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1/leads?_timestamp=1776173976766
+2026-04-28 14:13:58.589 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-04-28 14:13:58.675 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3bf26810, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19213a74, org.springframework.security.web.context.SecurityContextHolderFilter@b68932b, org.springframework.security.web.header.HeaderWriterFilter@21ffc00e, org.springframework.web.filter.CorsFilter@30a791a6, org.springframework.security.web.authentication.logout.LogoutFilter@6f976c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7adff6cb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13ebccd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@719bb60d, org.springframework.security.web.session.SessionManagementFilter@195cbf5e, org.springframework.security.web.access.ExceptionTranslationFilter@443253a6, org.springframework.security.web.access.intercept.AuthorizationFilter@5454be]
+2026-04-28 14:13:59.355 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path ''
+2026-04-28 14:13:59.377 [main] INFO  c.e.p.B2bSaasPlatformApplication - Started B2bSaasPlatformApplication in 39.23 seconds (process running for 40.243)
+2026-04-28 14:29:02.837 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-28 14:29:02.839 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-28 14:29:02.843 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-04-28 14:29:02.942 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1777366742584
+2026-04-28 14:29:03.012 [http-nio-8081-exec-3] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 14:29:03.055 [http-nio-8081-exec-3] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1777366742584
+2026-04-28 14:29:03.619 [http-nio-8081-exec-3] INFO  c.e.p.controller.LeadController - ✅ RECEIVED POST REQUEST /api/v1/leads - Email: ashutoshkumar1764@gmail.com
+2026-04-28 14:29:03.675 [http-nio-8081-exec-3] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "ashutoshkumar1764@gmail.com"}, Fields: {}, Sort: {}
+2026-04-28 14:29:03.718 [http-nio-8081-exec-3] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "ashutoshkumar1764@gmail.com"} fields: Document{{}} sort: { "email" : "ashutoshkumar1764@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
+2026-04-28 14:29:33.807 [http-nio-8081-exec-3] ERROR c.e.p.controller.LeadController - ❌ Database error while creating lead: Timed out after 30000 ms while waiting for a server that matches ReadPreferenceServerSelector{readPreference=primary}. Client view of cluster state is {type=UNKNOWN, servers=[{address=localhost:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: getsockopt}}]
+2026-04-28 14:29:43.659 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1777366783620
+2026-04-28 14:29:43.662 [http-nio-8081-exec-4] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 14:29:43.664 [http-nio-8081-exec-4] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1777366783620
+2026-04-28 14:29:43.669 [http-nio-8081-exec-4] INFO  c.e.p.controller.LeadController - ✅ RECEIVED POST REQUEST /api/v1/leads - Email: ashutoshkumar1764@gmail.com
+2026-04-28 14:29:43.671 [http-nio-8081-exec-4] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "ashutoshkumar1764@gmail.com"}, Fields: {}, Sort: {}
+2026-04-28 14:29:43.673 [http-nio-8081-exec-4] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "ashutoshkumar1764@gmail.com"} fields: Document{{}} sort: { "email" : "ashutoshkumar1764@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
+2026-04-28 14:30:13.687 [http-nio-8081-exec-4] ERROR c.e.p.controller.LeadController - ❌ Database error while creating lead: Timed out after 30000 ms while waiting for a server that matches ReadPreferenceServerSelector{readPreference=primary}. Client view of cluster state is {type=UNKNOWN, servers=[{address=localhost:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: getsockopt}}]
+2026-04-28 14:30:43.367 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1777366843341
+2026-04-28 14:30:43.371 [http-nio-8081-exec-6] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 14:30:43.373 [http-nio-8081-exec-6] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1777366843341
+2026-04-28 14:30:43.380 [http-nio-8081-exec-6] INFO  c.e.p.controller.LeadController - ✅ RECEIVED POST REQUEST /api/v1/leads - Email: ashutoshkumar1764@gmail.com
+2026-04-28 14:30:43.383 [http-nio-8081-exec-6] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "ashutoshkumar1764@gmail.com"}, Fields: {}, Sort: {}
+2026-04-28 14:30:43.385 [http-nio-8081-exec-6] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "ashutoshkumar1764@gmail.com"} fields: Document{{}} sort: { "email" : "ashutoshkumar1764@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
+2026-04-28 14:31:13.399 [http-nio-8081-exec-6] ERROR c.e.p.controller.LeadController - ❌ Database error while creating lead: Timed out after 30000 ms while waiting for a server that matches ReadPreferenceServerSelector{readPreference=primary}. Client view of cluster state is {type=UNKNOWN, servers=[{address=localhost:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: getsockopt}}]
+2026-04-28 14:33:27.693 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1/leads?_timestamp=1777367007636
+2026-04-28 14:33:27.697 [http-nio-8081-exec-8] DEBUG o.s.s.w.a.AnonymousAuthenticationFilter - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-28 14:33:27.700 [http-nio-8081-exec-8] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1/leads?_timestamp=1777367007636
+2026-04-28 14:33:27.708 [http-nio-8081-exec-8] INFO  c.e.p.controller.LeadController - ✅ RECEIVED POST REQUEST /api/v1/leads - Email: ashutoshkumar1764@gmail.com
+2026-04-28 14:33:27.711 [http-nio-8081-exec-8] DEBUG o.s.d.m.r.query.MongoQueryCreator - Created query Query: { "email" : "ashutoshkumar1764@gmail.com"}, Fields: {}, Sort: {}
+2026-04-28 14:33:27.713 [http-nio-8081-exec-8] DEBUG o.s.data.mongodb.core.MongoTemplate - find using query: { "email" : "ashutoshkumar1764@gmail.com"} fields: Document{{}} sort: { "email" : "ashutoshkumar1764@gmail.com"} for class: class com.enterprise.platform.domain.Lead in collection: leads
+2026-04-28 14:33:57.720 [http-nio-8081-exec-8] ERROR c.e.p.controller.LeadController - ❌ Database error while creating lead: Timed out after 30000 ms while waiting for a server that matches ReadPreferenceServerSelector{readPreference=primary}. Client view of cluster state is {type=UNKNOWN, servers=[{address=localhost:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {java.net.ConnectException: Connection refused: getsockopt}}]

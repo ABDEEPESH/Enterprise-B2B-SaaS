@@ -1,8 +1,11 @@
 package com.enterprise.platform.config;
 
+import com.enterprise.platform.filter.TenantFilter;
+import com.enterprise.platform.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -32,8 +35,17 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final TenantFilter tenantFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, TenantFilter tenantFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.tenantFilter = tenantFilter;
+    }
+
     private static final String[] PUBLIC_ENDPOINTS = {
         "/api/v1/leads/**",
+        "/api/v1/auth/**",
         "/api/v1/health/**",
         "/actuator/health",
         "/actuator/info",
@@ -99,7 +111,15 @@ public class SecurityConfig {
                         );
                     }
                 )
-            );
+            )
+            
+            // Add JWT filter
+            .addFilterBefore(jwtAuthenticationFilter, 
+                org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class)
+            
+            // Add tenant filter
+            .addFilterBefore(tenantFilter, 
+                org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -160,34 +180,17 @@ public class SecurityConfig {
     }
 
     /**
-     * JWT filter bean for future JWT authentication implementation.
-     * This is prepared for when JWT authentication is added.
+     * Configures authentication provider.
      * 
-     * @return JwtAuthenticationFilter (placeholder)
+     * @return DaoAuthenticationProvider instance
      */
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
-    }
-
-    /**
-     * Placeholder JWT authentication filter for future implementation.
-     * This class will be expanded when JWT authentication is fully implemented.
-     */
-    public static class JwtAuthenticationFilter extends 
-            org.springframework.web.filter.OncePerRequestFilter {
-        
-        @Override
-        protected void doFilterInternal(
-                @NonNull jakarta.servlet.http.HttpServletRequest request,
-                @NonNull jakarta.servlet.http.HttpServletResponse response,
-                @NonNull jakarta.servlet.FilterChain filterChain) 
-                throws jakarta.servlet.ServletException, java.io.IOException {
-            
-            // JWT validation logic will be implemented here
-            // For now, we just continue the filter chain
-            
-            filterChain.doFilter(request, response);
-        }
+    public AuthenticationProvider authenticationProvider(
+            com.enterprise.platform.security.UserDetailsServiceImpl userDetailsService,
+            PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder);
+        return authProvider;
     }
 }

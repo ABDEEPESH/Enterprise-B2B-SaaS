@@ -38,12 +38,22 @@ import Careers from './pages/legal/Careers'
 import NotFound from './pages/NotFound'
 import ThankYou from './pages/ThankYou'
 
+// Auth Pages
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+
 function App() {
   return (
     <ThemeProvider>
       <ModalProvider>
         <div className="min-h-screen bg-white dark:bg-slate-900 text-secondary-900 dark:text-slate-100 transition-colors duration-300">
           <Routes>
+            {/* Auth Pages - Standalone */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            
             <Route path="/" element={<MasterLayout />}>
               {/* Core Pages */}
               <Route index element={<Home />} />

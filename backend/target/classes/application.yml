@@ -134,6 +134,21 @@ app:
     from: ${EMAIL_FROM:noreply@yourcompany.com}
     from-name: ${EMAIL_FROM_NAME:Enterprise Platform}
 
+  # Kafka Configuration for event streaming
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: lead-events-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+
 ---
 # Development Profile Configuration
 spring:

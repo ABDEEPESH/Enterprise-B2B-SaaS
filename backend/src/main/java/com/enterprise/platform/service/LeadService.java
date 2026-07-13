@@ -5,6 +5,8 @@ import com.enterprise.platform.dto.LeadCreateRequest;
 import com.enterprise.platform.dto.LeadResponse;
 import com.enterprise.platform.exception.DuplicateLeadException;
 import com.enterprise.platform.exception.LeadNotFoundException;
+import com.enterprise.platform.repository.LeadRepository;
+import com.enterprise.platform.security.TenantContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,15 +36,18 @@ import java.util.stream.Collectors;
 public class LeadService {
 
     private final LeadRepository leadRepository;
+    private final KafkaProducerService kafkaProducerService;
 
     /**
      * Constructor-based dependency injection.
      * 
      * @param leadRepository The lead repository for data access
+     * @param kafkaProducerService The Kafka producer service for event publishing
      */
     @Autowired
-    public LeadService(LeadRepository leadRepository) {
+    public LeadService(LeadRepository leadRepository, KafkaProducerService kafkaProducerService) {
         this.leadRepository = leadRepository;
+        this.kafkaProducerService = kafkaProducerService;
     }
 
     /**
@@ -78,11 +83,20 @@ public class LeadService {
         lead.setCreatedAt(LocalDateTime.now());
         lead.setUpdatedAt(LocalDateTime.now());
 
+        // Set tenant ID from context
+        String tenantId = TenantContext.getTenantId();
+        if (tenantId != null) {
+            lead.setTenantId(tenantId);
+        }
+
         // Set priority based on budget and company size
         lead.setPriority(determineLeadPriority(request));
 
         // Save the lead
         Lead savedLead = Objects.requireNonNull(leadRepository.save(lead), "Saved lead cannot be null");
+
+        // Publish lead created event to Kafka
+        kafkaProducerService.publishLeadCreatedEvent(savedLead);
 
         // Convert to response DTO
         return convertToLeadResponse(savedLead);
@@ -103,6 +117,13 @@ public class LeadService {
                 .orElseThrow(() -> new LeadNotFoundException("Lead with ID " + id + " not found")),
             "Lead cannot be null"
         );
+        
+        // Verify tenant isolation
+        String tenantId = TenantContext.getTenantId();
+        if (tenantId != null && !tenantId.equals(lead.getTenantId())) {
+            throw new LeadNotFoundException("Lead with ID " + id + " not found");
+        }
+        
         return convertToLeadResponse(lead);
     }
 
@@ -115,11 +136,16 @@ public class LeadService {
     @Transactional(readOnly = true)
     @SuppressWarnings("null")
     public Page<LeadResponse> getAllLeads(@NonNull Pageable pageable) {
-        return Objects.requireNonNull(
-            leadRepository.findAll(pageable)
-                .map(this::convertToLeadResponse),
-            "Page result cannot be null"
-        );
+        String tenantId = TenantContext.getTenantId();
+        List<Lead> leads;
+        
+        if (tenantId != null) {
+            leads = leadRepository.findByTenantId(tenantId);
+        } else {
+            leads = leadRepository.findAll();
+        }
+        
+        return convertToLeadResponsePage(leads, pageable);
     }
 
     /**
@@ -132,7 +158,15 @@ public class LeadService {
     @Transactional(readOnly = true)
     @SuppressWarnings("null")
     public Page<LeadResponse> getLeadsByStatus(@NonNull Lead.LeadStatus status, @NonNull Pageable pageable) {
-        List<Lead> leads = Objects.requireNonNull(leadRepository.findByStatus(status), "Leads list cannot be null");
+        String tenantId = TenantContext.getTenantId();
+        List<Lead> leads;
+        
+        if (tenantId != null) {
+            leads = leadRepository.findByTenantIdAndStatus(tenantId, status);
+        } else {
+            leads = leadRepository.findByStatus(status);
+        }
+        
         return convertToLeadResponsePage(leads, pageable);
     }
 
@@ -146,7 +180,15 @@ public class LeadService {
     @Transactional(readOnly = true)
     @SuppressWarnings("null")
     public Page<LeadResponse> getLeadsByPriority(@NonNull Lead.LeadPriority priority, @NonNull Pageable pageable) {
-        List<Lead> leads = Objects.requireNonNull(leadRepository.findByPriority(priority), "Leads list cannot be null");
+        String tenantId = TenantContext.getTenantId();
+        List<Lead> leads;
+        
+        if (tenantId != null) {
+            leads = leadRepository.findByTenantIdAndPriority(tenantId, priority);
+        } else {
+            leads = leadRepository.findByPriority(priority);
+        }
+        
         return convertToLeadResponsePage(leads, pageable);
     }
 
@@ -160,7 +202,15 @@ public class LeadService {
     @Transactional(readOnly = true)
     @SuppressWarnings("null")
     public Page<LeadResponse> getLeadsByIndustry(@NonNull String industry, @NonNull Pageable pageable) {
-        List<Lead> leads = Objects.requireNonNull(leadRepository.findByIndustry(industry), "Leads list cannot be null");
+        String tenantId = TenantContext.getTenantId();
+        List<Lead> leads;
+        
+        if (tenantId != null) {
+            leads = leadRepository.findByTenantIdAndIndustry(tenantId, industry);
+        } else {
+            leads = leadRepository.findByIndustry(industry);
+        }
+        
         return convertToLeadResponsePage(leads, pageable);
     }
 
@@ -178,6 +228,15 @@ public class LeadService {
             leadRepository.searchByCompanyOrContactName(searchTerm),
             "Search results cannot be null"
         );
+        
+        // Filter by tenant if tenant context is present
+        String tenantId = TenantContext.getTenantId();
+        if (tenantId != null) {
+            searchResults = searchResults.stream()
+                    .filter(lead -> tenantId.equals(lead.getTenantId()))
+                    .collect(Collectors.toList());
+        }
+        
         return convertToLeadResponsePage(searchResults, pageable);
     }
 
@@ -197,10 +256,17 @@ public class LeadService {
             "Lead cannot be null"
         );
 
+        Lead.LeadStatus oldStatus = lead.getStatus();
         lead.setStatus(status);
         lead.setUpdatedAt(LocalDateTime.now());
 
         Lead updatedLead = Objects.requireNonNull(leadRepository.save(lead), "Updated lead cannot be null");
+
+        // Publish lead status changed event to Kafka
+        kafkaProducerService.publishLeadStatusChangedEvent(id, 
+            oldStatus != null ? oldStatus.getDisplayName() : "NEW", 
+            status.getDisplayName());
+
         return convertToLeadResponse(updatedLead);
     }
 
@@ -224,6 +290,10 @@ public class LeadService {
         lead.setUpdatedAt(LocalDateTime.now());
 
         Lead updatedLead = Objects.requireNonNull(leadRepository.save(lead), "Updated lead cannot be null");
+
+        // Publish lead updated event to Kafka
+        kafkaProducerService.publishLeadUpdatedEvent(updatedLead);
+
         return convertToLeadResponse(updatedLead);
     }
 
@@ -247,6 +317,10 @@ public class LeadService {
         lead.setUpdatedAt(LocalDateTime.now());
 
         Lead updatedLead = Objects.requireNonNull(leadRepository.save(lead), "Updated lead cannot be null");
+
+        // Publish lead updated event to Kafka
+        kafkaProducerService.publishLeadUpdatedEvent(updatedLead);
+
         return convertToLeadResponse(updatedLead);
     }
 
@@ -261,6 +335,9 @@ public class LeadService {
             throw new LeadNotFoundException("Lead with ID " + id + " not found");
         }
         leadRepository.deleteById(id);
+
+        // Publish lead deleted event to Kafka
+        kafkaProducerService.publishLeadDeletedEvent(id);
     }
 
     /**
@@ -271,13 +348,23 @@ public class LeadService {
     @Transactional(readOnly = true)
     public LeadStatistics getLeadStatistics() {
         LeadStatistics stats = new LeadStatistics();
+        String tenantId = TenantContext.getTenantId();
         
-        stats.setTotalLeads(leadRepository.count());
-        stats.setNewLeads(leadRepository.countByStatus(Lead.LeadStatus.NEW));
-        stats.setQualifiedLeads(leadRepository.countByStatus(Lead.LeadStatus.QUALIFIED));
-        stats.setClosedWonLeads(leadRepository.countByStatus(Lead.LeadStatus.CLOSED_WON));
-        stats.setHighPriorityLeads(leadRepository.countByPriority(Lead.LeadPriority.HIGH));
-        stats.setUrgentLeads(leadRepository.countByPriority(Lead.LeadPriority.URGENT));
+        if (tenantId != null) {
+            stats.setTotalLeads(leadRepository.countByTenantId(tenantId));
+            stats.setNewLeads(leadRepository.countByTenantIdAndStatus(tenantId, Lead.LeadStatus.NEW));
+            stats.setQualifiedLeads(leadRepository.countByTenantIdAndStatus(tenantId, Lead.LeadStatus.QUALIFIED));
+            stats.setClosedWonLeads(leadRepository.countByTenantIdAndStatus(tenantId, Lead.LeadStatus.CLOSED_WON));
+            stats.setHighPriorityLeads(leadRepository.countByTenantIdAndPriority(tenantId, Lead.LeadPriority.HIGH));
+            stats.setUrgentLeads(leadRepository.countByTenantIdAndPriority(tenantId, Lead.LeadPriority.URGENT));
+        } else {
+            stats.setTotalLeads(leadRepository.count());
+            stats.setNewLeads(leadRepository.countByStatus(Lead.LeadStatus.NEW));
+            stats.setQualifiedLeads(leadRepository.countByStatus(Lead.LeadStatus.QUALIFIED));
+            stats.setClosedWonLeads(leadRepository.countByStatus(Lead.LeadStatus.CLOSED_WON));
+            stats.setHighPriorityLeads(leadRepository.countByPriority(Lead.LeadPriority.HIGH));
+            stats.setUrgentLeads(leadRepository.countByPriority(Lead.LeadPriority.URGENT));
+        }
         
         return stats;
     }
